@@ -1,7 +1,9 @@
 #!/bin/bash
 
 dfx identity use default
+echo ">>>$1"
 dfx canister call AkitaDIP20 transfer  '(principal '\"$1\"',10000000)'
+echo ">>>2"
 dfx canister call GoldenDIP20 transfer  '(principal '\"$1\"',10000000)'
 # script to retrieve default subaccount of II in hex format
 II_ACCOUNT_ID_HEX=$(python3 ./scripts/principal_to_default_account_id.py $1)

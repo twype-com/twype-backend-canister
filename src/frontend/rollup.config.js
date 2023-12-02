@@ -76,7 +76,7 @@ export default {
     format: "iife",
     name: "app",
     file: "../frontend_assets/build/main.js",
-    inlineDynamicImports: true,
+		inlineDynamicImports: true,
   },
   plugins: [
     svelte({
