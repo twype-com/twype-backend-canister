@@ -23,7 +23,7 @@ type TxError = variant {
   Unauthorized;
   LedgerTrap;
   ErrorTo;
-  Other;
+  Other : text;
   BlockUsed;
   AmountTooSmall;
 };

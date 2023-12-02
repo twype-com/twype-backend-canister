@@ -4,9 +4,7 @@
       "candid": "src/defi_dapp/defi_dapp.did",
       "package": "defi_dapp",
       "type": "rust",
-      "dependencies": [
-        "ledger"
-      ]
+      "dependencies": ["ledger"]
     },
     "ledger": {
       "type": "custom",
@@ -24,19 +22,19 @@
       }
     },
     "frontend": {
-      "dependencies": [
-        "defi_dapp"
-      ],
-      "source": [
-        "src/frontend_assets"
-      ],
+      "dependencies": ["defi_dapp"],
+      "source": ["src/frontend_assets"],
       "type": "assets"
     },
     "AkitaDIP20": {
-      "main": "src/DIP20/motoko/src/token.mo"
+      "candid": "src/DIP20/rust/token.did",
+      "package": "token",
+      "type": "rust"
     },
     "GoldenDIP20": {
-      "main": "src/DIP20/motoko/src/token.mo"
+      "candid": "src/DIP20/rust/token.did",
+      "package": "token",
+      "type": "rust"
     }
   },
   "networks": {
