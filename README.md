@@ -137,7 +137,7 @@ This sample project uses a local test version of Internet Identity. Do not use y
 
 ## Step 9: Then run the following command:
 
-`make init-local II_PRINCIPAL=vwfj7-hmuym-pkftc-r7kkh-ksbaw-btelh-wuwpe-eaurd-tn27a-gdvlq-6qe`
+`make init-local II_PRINCIPAL=vglox-3sown-jvpqr-mp55k-juo5z-fvcdm-zidkq-2ybuj-7rhrf-iibx3-pae`
 
 ## Step 10: Refresh the web browser to verify that your tokens were deposited.
 

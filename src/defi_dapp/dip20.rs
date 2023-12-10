@@ -1,4 +1,5 @@
 use candid::{CandidType, Deserialize, Nat, Principal};
+use ic_cdk::api::call::CallResult;
 
 pub struct DIP20 {
     principal: Principal,
@@ -48,7 +49,9 @@ impl DIP20 {
         target: Principal,
         amount: Nat,
     ) -> TxReceipt {
-        let call_result: Result<(TxReceipt,), _> =
+        // let call_result: Result<(TxReceipt,), _> =
+        //     ic_cdk::api::call::call(self.principal, "transferFrom", (source, target, amount)).await;
+        let call_result: CallResult<(TxReceipt,)> =
             ic_cdk::api::call::call(self.principal, "transferFrom", (source, target, amount)).await;
         call_result.unwrap().0
     }
