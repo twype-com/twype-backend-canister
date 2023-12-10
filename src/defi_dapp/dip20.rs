@@ -50,7 +50,6 @@ impl DIP20 {
     ) -> TxReceipt {
         let call_result: Result<(TxReceipt,), _> =
             ic_cdk::api::call::call(self.principal, "transferFrom", (source, target, amount)).await;
-
         call_result.unwrap().0
     }
 

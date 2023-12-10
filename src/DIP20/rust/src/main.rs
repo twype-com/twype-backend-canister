@@ -6,10 +6,10 @@
 * Stability  : Experimental
 */
 use candid::{candid_method, CandidType, Deserialize, Int, Nat};
-use cap_sdk::{archive, from_archive, Archive};
-use cap_sdk::{handshake, insert, Event, IndefiniteEvent, TypedEvent};
-use cap_std::dip20::cap::DIP20Details;
-use cap_std::dip20::{Operation, TransactionStatus, TxRecord};
+// use cap_sdk::{archive, from_archive, Archive};
+// use cap_sdk::{handshake, insert, Event, IndefiniteEvent, TypedEvent};
+// use cap_std::dip20::cap::DIP20Details;
+// use cap_std::dip20::{Operation, TransactionStatus, TxRecord};
 use ic_cdk_macros::*;
 use ic_kit::{ic, Principal};
 use std::cell::RefCell;
@@ -19,10 +19,10 @@ use std::convert::Into;
 use std::iter::FromIterator;
 use std::string::String;
 
-#[derive(CandidType, Default, Deserialize, Clone)]
-pub struct TxLog {
-    pub ie_records: VecDeque<IndefiniteEvent>,
-}
+// #[derive(CandidType, Default, Deserialize, Clone)]
+// pub struct TxLog {
+//     pub ie_records: VecDeque<IndefiniteEvent>,
+// }
 
 #[allow(non_snake_case)]
 #[derive(Deserialize, CandidType, Clone, Debug)]
@@ -100,7 +100,7 @@ thread_local! {
     static BALANCES: RefCell<HashMap<Principal, Nat>> = RefCell::new(HashMap::default());
     static ALLOWS: RefCell<HashMap<Principal, HashMap<Principal, Nat>>> = RefCell::new(HashMap::default());
     static STATS: RefCell<StatsData> = RefCell::new(StatsData::default());
-    static TXLOG: RefCell<TxLog> = RefCell::new(TxLog::default());
+    // static TXLOG: RefCell<TxLog> = RefCell::new(TxLog::default());
 }
 
 #[init]
@@ -129,20 +129,20 @@ fn init(
         stats.history_size = 1;
         stats.deploy_time = ic::time();
     });
-    handshake(1_000_000_000_000, Some(cap));
+    // handshake(1_000_000_000_000, Some(cap));
     BALANCES.with(|b| {
         b.borrow_mut().insert(owner, total_supply.clone());
     });
-    let _ = add_record(
-        owner,
-        Operation::Mint,
-        owner,
-        owner,
-        total_supply,
-        Nat::from(0),
-        ic::time(),
-        TransactionStatus::Succeeded,
-    );
+    // let _ = add_record(
+    //     owner,
+    //     Operation::Mint,
+    //     owner,
+    //     owner,
+    //     total_supply,
+    //     Nat::from(0),
+    //     ic::time(),
+    //     TransactionStatus::Succeeded,
+    // );
 }
 
 /* UPDATE FNS */
@@ -158,69 +158,72 @@ async fn transfer(to: Principal, value: Nat) -> TxReceipt {
     _charge_fee(from, fee.clone());
     _transfer(from, to, value.clone());
     _history_inc();
-    add_record(
-        from,
-        Operation::Transfer,
-        from,
-        to,
-        value,
-        fee,
-        ic::time(),
-        TransactionStatus::Succeeded,
-    )
-    .await
+    // add_record(
+    //     from,
+    //     Operation::Transfer,
+    //     from,
+    //     to,
+    //     value,
+    //     fee,
+    //     ic::time(),
+    //     TransactionStatus::Succeeded,
+    // )
+    // .await;
+    Ok(Nat::from(0))
 }
 
 #[update(name = "transferFrom")]
 #[candid_method(update, rename = "transferFrom")]
 async fn transfer_from(from: Principal, to: Principal, value: Nat) -> TxReceipt {
-    let owner = ic::caller();
-    let from_allowance = allowance(from, owner);
-    let fee = _get_fee();
-    if from_allowance < value.clone() + fee.clone() {
-        return Err(TxError::InsufficientAllowance);
-    }
-    let from_balance = balance_of(from);
-    if from_balance < value.clone() + fee.clone() {
-        return Err(TxError::InsufficientBalance);
-    }
-    _charge_fee(from, fee.clone());
-    _transfer(from, to, value.clone());
-    ALLOWS.with(|a| {
-        let mut allowances = a.borrow_mut();
-        match allowances.get(&from) {
-            Some(inner) => {
-                let result = inner.get(&owner).unwrap().clone();
-                let mut temp = inner.clone();
-                if result.clone() - value.clone() - fee.clone() != 0 {
-                    temp.insert(owner, result.clone() - value.clone() - fee.clone());
-                    allowances.insert(from, temp);
-                } else {
-                    temp.remove(&owner);
-                    if temp.len() == 0 {
-                        allowances.remove(&from);
-                    } else {
-                        allowances.insert(from, temp);
-                    }
-                }
-            }
-            None => {
-                assert!(false);
-            }
-        }
-    });
-    _history_inc();
-    add_record(
-        owner,
-        Operation::TransferFrom,
-        from,
-        to,
-        value,
-        fee,
-        ic::time(),
-        TransactionStatus::Succeeded,
-    )
-    .await
+    // let owner = ic::caller();
+    // let from_allowance = allowance(from, owner);
+    // let fee = _get_fee();
+    // if from_allowance < value.clone() + fee.clone() {
+    //     return Err(TxError::InsufficientAllowance);
+    // }
+    // let from_balance = balance_of(from);
+    // if from_balance < value.clone() + fee.clone() {
+    //     return Err(TxError::InsufficientBalance);
+    // }
+    // _charge_fee(from, fee.clone());
+    // _transfer(from, to, value.clone());
+    // ALLOWS.with(|a| {
+    //     let mut allowances = a.borrow_mut();
+    //     match allowances.get(&from) {
+    //         Some(inner) => {
+    //             let result = inner.get(&owner).unwrap().clone();
+    //             let mut temp = inner.clone();
+    //             if result.clone() - value.clone() - fee.clone() != 0 {
+    //                 temp.insert(owner, result.clone() - value.clone() - fee.clone());
+    //                 allowances.insert(from, temp);
+    //             } else {
+    //                 temp.remove(&owner);
+    //                 if temp.len() == 0 {
+    //                     allowances.remove(&from);
+    //                 } else {
+    //                     allowances.insert(from, temp);
+    //                 }
+    //             }
+    //         }
+    //         None => {
+    //             assert!(false);
+    //         }
+    //     }
+    // });
+    // _history_inc();
+    Ok(Nat::from(0))
+
+    // add_record(
+    //     owner,
+    //     Operation::TransferFrom,
+    //     from,
+    //     to,
+    //     value,
+    //     fee,
+    //     ic::time(),
+    //     TransactionStatus::Succeeded,
+    // )
+    // .await
 }
 
 #[update]
@@ -261,17 +264,19 @@ async fn approve(spender: Principal, value: Nat) -> TxReceipt {
     });
 
     _history_inc();
-    add_record(
-        owner,
-        Operation::Approve,
-        owner,
-        spender,
-        v,
-        fee,
-        ic::time(),
-        TransactionStatus::Succeeded,
-    )
-    .await
+    Ok(Nat::from(0))
+
+    // add_record(
+    //     owner,
+    //     Operation::Approve,
+    //     owner,
+    //     spender,
+    //     v,
+    //     fee,
+    //     ic::time(),
+    //     TransactionStatus::Succeeded,
+    // )
+    // .await
 }
 
 #[update]
@@ -291,17 +296,19 @@ async fn burn(amount: Nat) -> TxReceipt {
         stats.total_supply -= amount.clone();
     });
     _history_inc();
-    add_record(
-        caller,
-        Operation::Burn,
-        caller,
-        caller,
-        amount,
-        Nat::from(0),
-        ic::time(),
-        TransactionStatus::Succeeded,
-    )
-    .await
+    Ok(Nat::from(0))
+
+    // add_record(
+    //     caller,
+    //     Operation::Burn,
+    //     caller,
+    //     caller,
+    //     amount,
+    //     Nat::from(0),
+    //     ic::time(),
+    //     TransactionStatus::Succeeded,
+    // )
+    // .await
 }
 
 /* QUERY FNS */
@@ -493,17 +500,18 @@ async fn mint(to: Principal, amount: Nat) -> TxReceipt {
         stats.total_supply += amount.clone();
     });
     _history_inc();
-    add_record(
-        caller,
-        Operation::Mint,
-        caller,
-        to,
-        amount,
-        Nat::from(0),
-        ic::time(),
-        TransactionStatus::Succeeded,
-    )
-    .await
+    Ok(Nat::from(0))
+    // add_record(
+    //     caller,
+    //     Operation::Mint,
+    //     caller,
+    //     to,
+    //     amount,
+    //     Nat::from(0),
+    //     ic::time(),
+    //     TransactionStatus::Succeeded,
+    // )
+    // .await
 }
 
 #[update(name = "setName", guard = "_is_auth")]
@@ -636,94 +644,94 @@ fn main() {
     std::print!("{}", __export_service());
 }
 
-#[pre_upgrade]
-fn pre_upgrade() {
-    let stats = STATS.with(|s| s.borrow().clone());
-    let balances = BALANCES.with(|b| b.borrow().clone());
-    let allows = ALLOWS.with(|a| a.borrow().clone());
-    let tx_log = TXLOG.with(|t| t.borrow().clone());
-    let cap = archive();
-    ic::stable_store((stats, balances, allows, tx_log, cap)).unwrap();
-}
+// #[pre_upgrade]
+// fn pre_upgrade() {
+//     let stats = STATS.with(|s| s.borrow().clone());
+//     let balances = BALANCES.with(|b| b.borrow().clone());
+//     let allows = ALLOWS.with(|a| a.borrow().clone());
+//     let tx_log = TXLOG.with(|t| t.borrow().clone());
+//     let cap = archive();
+//     ic::stable_store((stats, balances, allows, tx_log, cap)).unwrap();
+// }
 
-#[post_upgrade]
-fn post_upgrade() {
-    let (metadata_stored, balances_stored, allowances_stored, tx_log_stored, cap_store): (
-        StatsData,
-        Balances,
-        Allowances,
-        TxLog,
-        Archive,
-    ) = ic::stable_restore().unwrap();
-    STATS.with(|s| {
-        let mut stats = s.borrow_mut();
-        *stats = metadata_stored;
-    });
-    BALANCES.with(|b| {
-        let mut balances = b.borrow_mut();
-        *balances = balances_stored;
-    });
-    ALLOWS.with(|a| {
-        let mut allowances = a.borrow_mut();
-        *allowances = allowances_stored;
-    });
-    TXLOG.with(|t| {
-        let mut tx_log = t.borrow_mut();
-        *tx_log = tx_log_stored;
-    });
-    from_archive(cap_store);
-}
+// #[post_upgrade]
+// fn post_upgrade() {
+//     let (metadata_stored, balances_stored, allowances_stored, tx_log_stored, cap_store): (
+//         StatsData,
+//         Balances,
+//         Allowances,
+//         TxLog,
+//         Archive,
+//     ) = ic::stable_restore().unwrap();
+//     STATS.with(|s| {
+//         let mut stats = s.borrow_mut();
+//         *stats = metadata_stored;
+//     });
+//     BALANCES.with(|b| {
+//         let mut balances = b.borrow_mut();
+//         *balances = balances_stored;
+//     });
+//     ALLOWS.with(|a| {
+//         let mut allowances = a.borrow_mut();
+//         *allowances = allowances_stored;
+//     });
+//     TXLOG.with(|t| {
+//         let mut tx_log = t.borrow_mut();
+//         *tx_log = tx_log_stored;
+//     });
+//     from_archive(cap_store);
+// }
 
-async fn add_record(
-    caller: Principal,
-    op: Operation,
-    from: Principal,
-    to: Principal,
-    amount: Nat,
-    fee: Nat,
-    timestamp: u64,
-    status: TransactionStatus,
-) -> TxReceipt {
-    insert_into_cap(Into::<IndefiniteEvent>::into(Into::<Event>::into(Into::<
-        TypedEvent<DIP20Details>,
-    >::into(
-        TxRecord {
-            caller: Some(caller),
-            index: Nat::from(0),
-            from,
-            to,
-            amount: Nat::from(amount),
-            fee: Nat::from(fee),
-            timestamp: Int::from(timestamp),
-            status,
-            operation: op,
-        },
-    ))))
-    .await
-}
+// async fn add_record(
+//     caller: Principal,
+//     op: Operation,
+//     from: Principal,
+//     to: Principal,
+//     amount: Nat,
+//     fee: Nat,
+//     timestamp: u64,
+//     status: TransactionStatus,
+// ) -> TxReceipt {
+//     insert_into_cap(Into::<IndefiniteEvent>::into(Into::<Event>::into(Into::<
+//         TypedEvent<DIP20Details>,
+//     >::into(
+//         TxRecord {
+//             caller: Some(caller),
+//             index: Nat::from(0),
+//             from,
+//             to,
+//             amount: Nat::from(amount),
+//             fee: Nat::from(fee),
+//             timestamp: Int::from(timestamp),
+//             status,
+//             operation: op,
+//         },
+//     ))))
+//     .await
+// }
 
-pub async fn insert_into_cap(ie: IndefiniteEvent) -> TxReceipt {
-    let mut tx_log = TXLOG.with(|t| t.take());
-    if let Some(failed_ie) = tx_log.ie_records.pop_front() {
-        let _ = insert_into_cap_priv(failed_ie).await;
-    }
-    insert_into_cap_priv(ie).await
-}
+// pub async fn insert_into_cap(ie: IndefiniteEvent) -> TxReceipt {
+//     let mut tx_log = TXLOG.with(|t| t.take());
+//     if let Some(failed_ie) = tx_log.ie_records.pop_front() {
+//         let _ = insert_into_cap_priv(failed_ie).await;
+//     }
+//     insert_into_cap_priv(ie).await
+// }
 
-async fn insert_into_cap_priv(ie: IndefiniteEvent) -> TxReceipt {
-    let insert_res = insert(ie.clone())
-        .await
-        .map(|tx_id| Nat::from(tx_id))
-        .map_err(|error| {
-            TxError::Other(format!("Inserting into cap failed with error: {:?}", error))
-        });
+// async fn insert_into_cap_priv(ie: IndefiniteEvent) -> TxReceipt {
+//     let insert_res = insert(ie.clone())
+//         .await
+//         .map(|tx_id| Nat::from(tx_id))
+//         .map_err(|error| {
+//             TxError::Other(format!("Inserting into cap failed with error: {:?}", error))
+//         });
 
-    if insert_res.is_err() {
-        TXLOG.with(|t| {
-            let mut tx_log = t.borrow_mut();
-            tx_log.ie_records.push_back(ie.clone());
-        });
-    }
+//     if insert_res.is_err() {
+//         TXLOG.with(|t| {
+//             let mut tx_log = t.borrow_mut();
+//             tx_log.ie_records.push_back(ie.clone());
+//         });
+//     }
 
-    insert_res
-}
+//     insert_res
+// }
