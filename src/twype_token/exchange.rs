@@ -6,15 +6,32 @@ use ic_cdk::caller;
 use crate::types::*;
 use crate::{utils, OrderId};
 
+use rust_decimal::Decimal;
+
 #[derive(Default)]
 pub struct Balances(pub HashMap<Principal, HashMap<Principal, Nat>>); // owner -> token_canister_id -> amount
+#[derive(Default)]
+pub struct RTBalances(pub HashMap<Principal, HashMap<Nat, Decimal>>); // owner -> room id -> amount
 type Orders = HashMap<OrderId, Order>;
 
 #[derive(Default)]
 pub struct Exchange {
     pub next_id: OrderId,
     pub balances: Balances,
+    pub rt_balances: RTBalances,
     pub orders: Orders,
+}
+
+impl RTBalances {
+    pub fn add_balance(&mut self, owner: &Principal, room: Nat, delta: Decimal) {
+        let balances = self.0.entry(*owner).or_insert_with(HashMap::new);
+
+        if let Some(x) = balances.get_mut(&room) {
+            *x += delta;
+        } else {
+            balances.insert(room, delta);
+        }
+    }
 }
 
 impl Balances {

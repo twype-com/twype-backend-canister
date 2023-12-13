@@ -5,10 +5,10 @@
 
 use std::collections::HashMap;
 
-use candid::{CandidType, Principal};
+use candid::{CandidType, Nat, Principal};
 use serde::{Deserialize, Serialize};
 
-use crate::exchange::{Balances, Exchange};
+use crate::exchange::{Balances, Exchange, RTBalances};
 use crate::types::*;
 use crate::{OrderId, State};
 
@@ -109,6 +109,7 @@ impl From<StableExchange> for Exchange {
     fn from(input: StableExchange) -> Self {
         Exchange {
             next_id: input.next_id,
+            rt_balances: RTBalances::default(), // TODO: Add serialization
             balances: input.balances.into(),
             orders: input
                 .orders

@@ -16,6 +16,7 @@ mod utils;
 
 use dip20::DIP20;
 use exchange::Exchange;
+use rust_decimal::Decimal;
 use types::*;
 use utils::principal_to_subaccount;
 
@@ -42,11 +43,6 @@ pub async fn deposit(token_canister_id: Principal) -> DepositReceipt {
     assert!(token_canister_id == ledger_canister_id);
     let amount = deposit_icp(caller).await?;
 
-    // TODO support other tokens
-    // let amount = if token_canister_id == ledger_canister_id {
-    // } else {
-        // deposit_token(caller, token_canister_id).await?
-    // };
     STATE.with(|s| {
         s.borrow_mut()
             .exchange
@@ -54,6 +50,48 @@ pub async fn deposit(token_canister_id: Principal) -> DepositReceipt {
             .add_balance(&caller, &token_canister_id, amount.to_owned())
     });
     DepositReceipt::Ok(amount)
+}
+
+#[update(name = "buyRoomToken")]
+#[candid_method(update, rename = "buyRoomToken")]
+pub async fn buy_room_token(room: Nat, amount_in: Nat) -> BuyRoomTokenReceipt {
+    ic_cdk::println!("buy_room_token 1 {amount_in}");
+
+    let caller = caller();
+    let ledger_canister_id = STATE
+        .with(|s| s.borrow().ledger)
+        .unwrap_or(MAINNET_LEDGER_CANISTER_ID);
+    ic_cdk::println!("buy_room_token 2 {amount_in}");
+
+    STATE.with(|s| {
+        let icp_balance: Nat = s.borrow().exchange.get_balance(ledger_canister_id);
+        ic_cdk::println!("buy_room_token 3 {icp_balance}");
+
+        assert!(icp_balance > amount_in);
+        ic_cdk::println!("buy_room_token 4 {amount_in}");
+
+        let s_success = s.borrow_mut().exchange.balances.subtract_balance(
+            &caller,
+            &ledger_canister_id,
+            amount_in.to_owned(),
+        );
+        assert!(s_success);
+        let new_balance = s.borrow().exchange.get_balance(ledger_canister_id);
+        ic_cdk::println!("RT purchaes {new_balance}");
+        assert!(new_balance + amount_in.to_owned() == icp_balance);
+        ic_cdk::println!("RT purchaes COMPLETE");
+
+        // s.borrow_mut()
+        //     .exchange
+        //     .rt_balances
+        //     .add_balance(&caller, room)
+    });
+    STATE.with(|s| {
+        let new_balance = s.borrow().exchange.get_balance(ledger_canister_id);
+        ic_cdk::println!("RT new_balance 2 {new_balance}");
+    });
+
+    BuyRoomTokenReceipt::Ok(amount_in)
 }
 
 async fn deposit_icp(caller: Principal) -> Result<Nat, DepositErr> {

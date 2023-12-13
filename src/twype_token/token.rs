@@ -98,7 +98,6 @@ pub type TxReceipt = Result<Nat, TxError>;
 
 thread_local! {
     static BALANCES: RefCell<HashMap<Principal, Nat>> = RefCell::new(HashMap::default());
-    static ROOM_TOKEN_BALANCES: RefCell<HashMap<Principal, Nat>> = RefCell::new(HashMap::default());
     static ALLOWS: RefCell<HashMap<Principal, HashMap<Principal, Nat>>> = RefCell::new(HashMap::default());
     static STATS: RefCell<StatsData> = RefCell::new(StatsData::default());
     // static TXLOG: RefCell<TxLog> = RefCell::new(TxLog::default());
