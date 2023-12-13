@@ -27,20 +27,20 @@ cp src/ledger/ledger.public.did src/ledger/ledger.did
 
 ### === DEPLOY DIP TOKENS =====
 
-dfx canister create AkitaDIP20
-dfx canister create GoldenDIP20
-dfx build AkitaDIP20
-dfx build GoldenDIP20
+# dfx canister create AkitaDIP20
+# dfx canister create GoldenDIP20
+# dfx build AkitaDIP20
+# dfx build GoldenDIP20
 
-export ROOT_PRINCIPAL="principal \"$(dfx identity get-principal)\""
-dfx canister install GoldenDIP20 --argument="(\"https://dogbreedslist.com/wp-content/uploads/2019/08/Are-Golden-Retrievers-easy-to-train.png\", \"Golden Coin\", \"GLD\", 8, 10000000000000000, $ROOT_PRINCIPAL, 10000, $ROOT_PRINCIPAL, $ROOT_PRINCIPAL)"
-dfx canister install AkitaDIP20 --argument="(\"https://akitagoose.com/wp-content/uploads/2021/12/IMG_0674.png\", \"Akita Coin\", \"AKI\", 8, 10000000000000000, $ROOT_PRINCIPAL, 10000, $ROOT_PRINCIPAL, $ROOT_PRINCIPAL)"
+# export ROOT_PRINCIPAL="principal \"$(dfx identity get-principal)\""
+# dfx canister install GoldenDIP20 --argument="(\"https://dogbreedslist.com/wp-content/uploads/2019/08/Are-Golden-Retrievers-easy-to-train.png\", \"Golden Coin\", \"GLD\", 8, 10000000000000000, $ROOT_PRINCIPAL, 10000, $ROOT_PRINCIPAL, $ROOT_PRINCIPAL)"
+# dfx canister install AkitaDIP20 --argument="(\"https://akitagoose.com/wp-content/uploads/2021/12/IMG_0674.png\", \"Akita Coin\", \"AKI\", 8, 10000000000000000, $ROOT_PRINCIPAL, 10000, $ROOT_PRINCIPAL, $ROOT_PRINCIPAL)"
 
-# set fees 
-dfx canister call AkitaDIP20 setFeeTo "($ROOT_PRINCIPAL)"
-dfx canister call AkitaDIP20 setFee "(420)" 
-dfx canister call GoldenDIP20 setFeeTo "($ROOT_PRINCIPAL)"
-dfx canister call GoldenDIP20 setFee "(420)" 
+# # set fees 
+# dfx canister call AkitaDIP20 setFeeTo "($ROOT_PRINCIPAL)"
+# dfx canister call AkitaDIP20 setFee "(420)" 
+# dfx canister call GoldenDIP20 setFeeTo "($ROOT_PRINCIPAL)"
+# dfx canister call GoldenDIP20 setFee "(420)" 
 
 ### === DEPLOY INTERNET IDENTITY =====
 
@@ -48,15 +48,15 @@ II_FETCH_ROOT_KEY=1 dfx deploy internet_identity --no-wallet --argument '(null)'
 
 ## === INSTALL FRONTEND / BACKEND ==== 
 
-dfx deploy defi_dapp --argument "(opt principal \"$LEDGER_ID\")"
+dfx deploy twype_token --argument "(opt principal \"$LEDGER_ID\")"
 
-dfx generate defi_dapp
-dfx build defi_dapp
-dfx build AkitaDIP20
-dfx build GoldenDIP20
-dfx generate defi_dapp
-dfx generate AkitaDIP20
-dfx generate GoldenDIP20
+dfx generate twype_token
+dfx build twype_token
+# dfx build AkitaDIP20
+# dfx build GoldenDIP20
+dfx generate twype_token
+# dfx generate AkitaDIP20
+# dfx generate GoldenDIP20
 dfx generate ledger
 
 dfx canister create frontend

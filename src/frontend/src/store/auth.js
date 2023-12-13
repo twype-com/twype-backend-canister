@@ -6,13 +6,13 @@ import { Actor, HttpAgent } from "@dfinity/agent";
  * Creates an actor for the Backend canister
  *
  * @param {{agentOptions: import("@dfinity/agent").HttpAgentOptions, actorOptions: import("@dfinity/agent").ActorConfig}} options
- * @returns {import("@dfinity/agent").ActorSubclass<import("../../../declarations/defi_dapp/defi_dapp.did")._SERVICE>}
+ * @returns {import("@dfinity/agent").ActorSubclass<import("../../../declarations/twype_token/twype_token.did")._SERVICE>}
  */
 export function createActor(options) {
   const hostOptions = {
     host:
       process.env.DFX_NETWORK === "ic"
-        ? `https://${process.env.DEFI_DAPP_CANISTER_ID}.ic0.app`
+        ? `https://${process.env.TWYPE_TOKEN_CANISTER_ID}.ic0.app`
         : "http://localhost:8000",
   };
   if (!options) {
@@ -41,7 +41,7 @@ export function createActor(options) {
   // Creates an actor with using the candid interface and the HttpAgent
   return Actor.createActor(idlFactory, {
     agent,
-    canisterId: process.env.DEFI_DAPP_CANISTER_ID,
+    canisterId: process.env.TWYPE_TOKEN_CANISTER_ID,
     ...options?.actorOptions,
   });
 }
@@ -52,14 +52,14 @@ export const auth = writable({
   actor: createActor(),
 });
 
-export const DEX_CANISTER_ID = process.env.DEFI_DAPP_CANISTER_ID;
-export const AKITA_CANISTER_ID = process.env.AKITADIP20_CANISTER_ID;
-export const GOLDENDIP20_CANISTER_ID = process.env.GOLDENDIP20_CANISTER_ID;
+export const DEX_CANISTER_ID = process.env.TWYPE_TOKEN_CANISTER_ID;
+// export const AKITA_CANISTER_ID = process.env.AKITADIP20_CANISTER_ID;
+// export const GOLDENDIP20_CANISTER_ID = process.env.GOLDENDIP20_CANISTER_ID;
 export const LEDGER_CANISTER_ID = process.env.LEDGER_CANISTER_ID;
 export const whitelist = [
   DEX_CANISTER_ID,
-  AKITA_CANISTER_ID,
-  GOLDENDIP20_CANISTER_ID,
+  // AKITA_CANISTER_ID,
+  // GOLDENDIP20_CANISTER_ID,
   LEDGER_CANISTER_ID,
 ];
 
@@ -75,8 +75,8 @@ export const plugWallet = writable({
   host: host,
   principal: "",
   plugActor: null,
-  plugAkitaActor: null,
-  plugGoldenActor: null,
+  // plugAkitaActor: null,
+  // plugGoldenActor: null,
   plugLedgerActor: null,
 });
 

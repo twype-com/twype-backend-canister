@@ -8,13 +8,13 @@
     whitelist,
     host,
     DEX_CANISTER_ID,
-    AKITA_CANISTER_ID,
-    GOLDENDIP20_CANISTER_ID,
+    // AKITA_CANISTER_ID,
+    // GOLDENDIP20_CANISTER_ID,
     LEDGER_CANISTER_ID,
   } from "../store/auth";
-  import { idlFactory as akitaIDL } from "../../../declarations/AkitaDIP20/AkitaDIP20.did.js";
-  import { idlFactory as goldenIDL } from "../../../declarations/GoldenDIP20/GoldenDIP20.did.js";
-  import { idlFactory as backendIDL } from "../../../declarations/defi_dapp/defi_dapp.did.js";
+  // import { idlFactory as akitaIDL } from "../../../declarations/AkitaDIP20/AkitaDIP20.did.js";
+  // import { idlFactory as goldenIDL } from "../../../declarations/GoldenDIP20/GoldenDIP20.did.js";
+  import { idlFactory as backendIDL } from "../../../declarations/twype_token/twype_token.did.js";
   import { idlFactory as ledgerIDL } from "../../../declarations/ledger/ledger.did.js";
   /** @type {AuthClient} */
   let client;
@@ -52,14 +52,14 @@
         canisterId: DEX_CANISTER_ID,
         interfaceFactory: backendIDL,
       });
-      const plugAkitaActor = await window.ic.plug.createActor({
-        canisterId: AKITA_CANISTER_ID,
-        interfaceFactory: akitaIDL,
-      });
-      const plugGoldenActor = await window.ic.plug.createActor({
-        canisterId: GOLDENDIP20_CANISTER_ID,
-        interfaceFactory: goldenIDL,
-      });
+      // const plugAkitaActor = await window.ic.plug.createActor({
+      //   canisterId: AKITA_CANISTER_ID,
+      //   interfaceFactory: akitaIDL,
+      // });
+      // const plugGoldenActor = await window.ic.plug.createActor({
+      //   canisterId: GOLDENDIP20_CANISTER_ID,
+      //   interfaceFactory: goldenIDL,
+      // });
       const plugLedgerActor = await window.ic.plug.createActor({
         canisterId: LEDGER_CANISTER_ID,
         interfaceFactory: ledgerIDL,
@@ -68,13 +68,13 @@
         ...$plugWallet,
         principal,
         plugActor,
-        plugAkitaActor,
-        plugGoldenActor,
+        // plugAkitaActor,
+        // plugGoldenActor,
         plugLedgerActor,
         isConnected: true,
       });
-      console.log("akita name:", await plugAkitaActor.name());
-      console.log("golden name:", await plugGoldenActor.name());
+      // console.log("akita name:", await plugAkitaActor.name());
+      // console.log("golden name:", await plugGoldenActor.name());
       console.log("defi balances:", await plugActor.getBalances());
     } catch (e) {
       console.log(e);
