@@ -8,7 +8,7 @@ use std::collections::HashMap;
 use candid::{CandidType, Nat, Principal};
 use serde::{Deserialize, Serialize};
 
-use crate::exchange::{Balances, Exchange, RTBalances};
+use crate::exchange::{Balances, Exchange, RTBalances, RTSupply};
 use crate::types::*;
 use crate::{OrderId, State};
 
@@ -110,6 +110,7 @@ impl From<StableExchange> for Exchange {
         Exchange {
             next_id: input.next_id,
             rt_balances: RTBalances::default(), // TODO: Add serialization
+            rt_supply: RTSupply::default(),
             balances: input.balances.into(),
             orders: input
                 .orders

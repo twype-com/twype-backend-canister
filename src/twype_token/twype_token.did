@@ -43,6 +43,7 @@ type Dex =
    buyRoomToken: (nat, nat) -> (BuyRoomTokenReceipt);
    getAllBalances: () -> (vec Balance) query;
    getBalance: (Token) -> (nat) query;
+   getRTBalance: (nat) -> (nat) query;
    getBalances: () -> (vec Balance) query;
    getDepositAddress: () -> (blob);
    getOrder: (OrderId) -> (opt Order);

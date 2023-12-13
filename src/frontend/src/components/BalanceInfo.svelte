@@ -118,6 +118,9 @@
       console.log("Fetching all user balances");
       const allUserBalances = await backendActor.getBalances();
       console.log("User Balances: ", allUserBalances);
+
+      const rt1Balance = await backendActor.getRTBalance(1);
+
       for (let i = 0; i < $canisters.length; i++) {
         const principal = Principal.fromText($canisters[i].canisterId);
         let token;
@@ -135,6 +138,7 @@
           canisterBalance: ledgerBalance,
           dexBalance: dexBalance,
           principal: principal,
+          roomBalance: rt1Balance,
         });
       }
 
@@ -466,7 +470,8 @@
           <th>Token</th>
           <th>Canister Balance</th>
           <th></th>
-          <th>DEX Balance</th>
+          <th>Twype ICP Balance</th>
+          <th>Twype Room 1 Token Balance</th>
         </thead>
         <tbody>
           {#each $userBalances as balance}
@@ -542,6 +547,11 @@
               <td>
                 {balance && balance.dexBalance
                   ? balance.dexBalance.toLocaleString()
+                  : "0"}
+              </td>
+              <td>
+                {balance && balance.roomBalance
+                  ? balance.roomBalance.toLocaleString()
                   : "0"}
               </td>
             </tr>

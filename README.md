@@ -10,8 +10,8 @@ Run:
 make install
 ```
 
-Mint ICP tokens:
+Mint ICP tokens (replace with your principal):
 
 ```sh
-make init-local II_PRINCIPAL=wdlv7-kpsjj-btqay-qkl4f-5g74b-vu5zt-wyrvb-l7xq2-ogm67-uplyn-2ae
+make init-local II_PRINCIPAL=pnphr-alfd4-qkkth-mtehm-gfbmh-ya75n-lf2jh-f2edp-3wihw-rho24-3ae
 ```

@@ -6,12 +6,12 @@ use ic_cdk::caller;
 use crate::types::*;
 use crate::{utils, OrderId};
 
-use rust_decimal::Decimal;
-
 #[derive(Default)]
 pub struct Balances(pub HashMap<Principal, HashMap<Principal, Nat>>); // owner -> token_canister_id -> amount
 #[derive(Default)]
-pub struct RTBalances(pub HashMap<Principal, HashMap<Nat, Decimal>>); // owner -> room id -> amount
+pub struct RTBalances(pub HashMap<Principal, HashMap<Nat, Nat>>); // owner -> room id -> amount
+#[derive(Default)]
+pub struct RTSupply(pub HashMap<Nat, Nat>); // room id -> total supply
 type Orders = HashMap<OrderId, Order>;
 
 #[derive(Default)]
@@ -19,11 +19,57 @@ pub struct Exchange {
     pub next_id: OrderId,
     pub balances: Balances,
     pub rt_balances: RTBalances,
+    pub rt_supply: RTSupply,
     pub orders: Orders,
 }
 
+pub fn price(supply: Nat, amount: Nat) -> Nat {
+    let sum1 = if supply == utils::zero() {
+        utils::zero()
+    } else {
+        (supply.to_owned() - 1) * (supply.to_owned()) * (utils::two() * (supply.to_owned() - 1) + 1)
+            / 6
+    };
+    let sum2 = if supply == utils::zero() && amount == utils::one() {
+        utils::zero()
+    } else {
+        (supply.to_owned() - 1 + amount.to_owned())
+            * (supply.to_owned() + amount.to_owned())
+            * (utils::two() * (supply - 1 + amount) + 1)
+            / 6
+    };
+    sum2 - sum1
+}
+
+impl RTSupply {
+    pub fn increase_supply(&mut self, room: Nat, delta: Nat) {
+        if let Some(x) = self.0.get_mut(&room) {
+            *x += delta;
+        } else {
+            self.0.insert(room, delta);
+        }
+    }
+    pub fn decrease_supply(&mut self, room: Nat, delta: Nat) -> bool {
+        if let Some(x) = self.0.get_mut(&room) {
+            if *x >= delta {
+                *x -= delta;
+                // no need to keep an empty token record
+                if *x == utils::zero() {
+                    self.0.remove(&room);
+                }
+                true
+            } else {
+                false
+            }
+        } else {
+            self.0.insert(room, delta);
+            false
+        }
+    }
+}
+
 impl RTBalances {
-    pub fn add_balance(&mut self, owner: &Principal, room: Nat, delta: Decimal) {
+    pub fn add_balance(&mut self, owner: &Principal, room: Nat, delta: Nat) {
         let balances = self.0.entry(*owner).or_insert_with(HashMap::new);
 
         if let Some(x) = balances.get_mut(&room) {
@@ -72,6 +118,14 @@ impl Balances {
 }
 
 impl Exchange {
+    pub fn get_rt_balance(&self, room: Nat) -> Nat {
+        self.rt_balances
+            .0
+            .get(&caller())
+            .and_then(|v| v.get(&room))
+            .map_or(utils::zero(), |v| v.to_owned())
+    }
+
     pub fn get_balance(&self, token_canister_id: Principal) -> Nat {
         self.balances
             .0

@@ -16,7 +16,6 @@ mod utils;
 
 use dip20::DIP20;
 use exchange::Exchange;
-use rust_decimal::Decimal;
 use types::*;
 use utils::principal_to_subaccount;
 
@@ -63,6 +62,8 @@ pub async fn buy_room_token(room: Nat, amount_in: Nat) -> BuyRoomTokenReceipt {
         .unwrap_or(MAINNET_LEDGER_CANISTER_ID);
     ic_cdk::println!("buy_room_token 2 {amount_in}");
 
+    let amount_out = amount_in.to_owned();
+
     STATE.with(|s| {
         let icp_balance: Nat = s.borrow().exchange.get_balance(ledger_canister_id);
         ic_cdk::println!("buy_room_token 3 {icp_balance}");
@@ -75,16 +76,23 @@ pub async fn buy_room_token(room: Nat, amount_in: Nat) -> BuyRoomTokenReceipt {
             &ledger_canister_id,
             amount_in.to_owned(),
         );
+
         assert!(s_success);
         let new_balance = s.borrow().exchange.get_balance(ledger_canister_id);
         ic_cdk::println!("RT purchaes {new_balance}");
         assert!(new_balance + amount_in.to_owned() == icp_balance);
         ic_cdk::println!("RT purchaes COMPLETE");
 
-        // s.borrow_mut()
-        //     .exchange
-        //     .rt_balances
-        //     .add_balance(&caller, room)
+        s.borrow_mut().exchange.rt_balances.add_balance(
+            &caller,
+            room.to_owned(),
+            amount_out.to_owned(),
+        );
+
+        s.borrow_mut()
+            .exchange
+            .rt_supply
+            .increase_supply(room, amount_out.to_owned())
     });
     STATE.with(|s| {
         let new_balance = s.borrow().exchange.get_balance(ledger_canister_id);
@@ -153,6 +161,12 @@ async fn deposit_token(caller: Principal, token: Principal) -> Result<Nat, Depos
 #[candid_method(query, rename = "getBalance")]
 pub fn get_balance(token_canister_id: Principal) -> Nat {
     STATE.with(|s| s.borrow().exchange.get_balance(token_canister_id))
+}
+
+#[query(name = "getRTBalance")]
+#[candid_method(query, rename = "getRTBalance")]
+pub fn get_rt_balance(room: Nat) -> Nat {
+    STATE.with(|s| s.borrow().exchange.get_rt_balance(room))
 }
 
 #[query(name = "getBalances")]

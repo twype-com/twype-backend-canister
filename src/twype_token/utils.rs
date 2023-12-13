@@ -3,10 +3,18 @@ use std::convert::TryInto;
 use candid::{Nat, Principal};
 use ic_ledger_types::Subaccount;
 use num_bigint::BigUint;
-use num_traits::Zero;
+use num_traits::{One, Zero};
 
 pub fn zero() -> Nat {
     Nat(BigUint::zero())
+}
+
+pub fn one() -> Nat {
+    Nat(BigUint::one())
+}
+
+pub fn two() -> Nat {
+    Nat(BigUint::new(vec![2]))
 }
 
 pub fn principal_to_subaccount(principal_id: &Principal) -> Subaccount {

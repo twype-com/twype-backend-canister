@@ -1,5 +1,5 @@
 import { writable } from "svelte/store";
-import { idlFactory } from "../../../declarations/defi_dapp/defi_dapp.did.js";
+import { idlFactory } from "../../../declarations/twype_token/twype_token.did.js";
 import { Actor, HttpAgent } from "@dfinity/agent";
 
 /**
