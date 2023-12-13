@@ -39,12 +39,14 @@ pub async fn deposit(token_canister_id: Principal) -> DepositReceipt {
     let ledger_canister_id = STATE
         .with(|s| s.borrow().ledger)
         .unwrap_or(MAINNET_LEDGER_CANISTER_ID);
+    assert!(token_canister_id == ledger_canister_id);
+    let amount = deposit_icp(caller).await?;
 
-    let amount = if token_canister_id == ledger_canister_id {
-        deposit_icp(caller).await?
-    } else {
-        deposit_token(caller, token_canister_id).await?
-    };
+    // TODO support other tokens
+    // let amount = if token_canister_id == ledger_canister_id {
+    // } else {
+        // deposit_token(caller, token_canister_id).await?
+    // };
     STATE.with(|s| {
         s.borrow_mut()
             .exchange

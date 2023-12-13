@@ -1,4 +1,4 @@
-# Decentralized exchange (DEX) sample
+# Twype Token Trade
 
 ## Overview
 
@@ -137,7 +137,7 @@ This sample project uses a local test version of Internet Identity. Do not use y
 
 ## Step 9: Then run the following command:
 
-`make init-local II_PRINCIPAL=d7m3b-uklqu-ojip3-4ohbn-474xp-d4hhz-x22ho-p2zq3-ehs3c-qv34q-3qe`
+`make init-local II_PRINCIPAL=vuyaz-aoff5-hl7oj-jxgry-bhx5s-3gc4f-be7q4-jjxug-jlacp-keohe-sae`
 
 ## Step 10: Refresh the web browser to verify that your tokens were deposited.
 
