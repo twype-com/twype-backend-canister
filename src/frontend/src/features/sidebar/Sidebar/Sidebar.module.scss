@@ -1,0 +1,11 @@
+.sidebar {
+  padding: var(--space-base) 0 0;
+
+  @include device(mobile) {
+    box-shadow: 0 0 0 1px var(--color-border);
+  }
+
+  @include device(notMobile) {
+    padding-block-start: var(--space-large);
+  }
+}

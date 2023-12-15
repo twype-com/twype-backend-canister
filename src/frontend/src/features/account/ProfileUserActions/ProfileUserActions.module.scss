@@ -1,0 +1,8 @@
+.actions {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  align-items: flex-start;
+  gap: var(--space-base);
+  margin-left: auto;
+}

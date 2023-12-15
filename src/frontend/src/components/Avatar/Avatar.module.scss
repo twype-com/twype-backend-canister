@@ -1,0 +1,8 @@
+@import '@/styles/_mixins.module';
+
+.avatar {
+  --avatar-size: var(--cmp-avatar-size, var(--space-large));
+
+  width: var(--avatar-size);
+  height: var(--avatar-size);
+}

@@ -1,0 +1,11 @@
+.profile {
+  display: flex;
+  justify-content: flex-start;
+  align-items: stretch;
+  column-gap: var(--space-base);
+  max-width: 580px;
+}
+
+.avatar {
+  --cmp-avatar-size: 128px;
+}

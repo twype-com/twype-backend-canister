@@ -1,0 +1,60 @@
+.layout {
+  --sidebar-size: 48px;
+  --panel-size: 48px;
+
+  min-width: var(--device-min-size);
+  padding: var(--panel-size) 0 var(--panel-size) var(--panel-size);
+
+  @include device(notMobile) {
+    --sidebar-size: 232px;
+    --panel-size: 60px;
+
+    padding-inline-start: var(--sidebar-size);
+    padding-block-end: 0;
+  }
+
+  @include device(miniMobile) {
+    padding-inline-start: 0;
+  }
+
+  .sidebar {
+    position: fixed;
+    top: var(--panel-size);
+    bottom: 0;
+    left: 0;
+    width: var(--sidebar-size);
+
+    @include device(miniMobile) {
+      display: none;
+    }
+  }
+
+  .footer {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+
+    @include device(notMiniMobile) {
+      display: none;
+    }
+  }
+}
+
+.header {
+  position: fixed;
+  z-index: 100;
+  top: 0;
+  left: 0;
+  right: 0;
+}
+
+.main {
+  grid-area: main;
+  padding: 0 var(--space-base);
+}
+
+.content {
+  max-width: 1776px;
+  margin: 0 auto;
+}

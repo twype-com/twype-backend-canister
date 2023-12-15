@@ -1,15 +1,45 @@
 import { defineConfig } from 'vite'
+import { fileURLToPath, URL } from 'url'
 import react from '@vitejs/plugin-react'
-import path from 'path'
+import tsconfigPaths from 'vite-tsconfig-paths'
 
 // https://vitejs.dev/config/
 export default defineConfig({
+  plugins: [
+    react(),
+    tsconfigPaths({
+      parseNative: false,
+    }),
+  ],
   resolve: {
-    alias: {
-      '@': path.resolve(__dirname, './src'),
-      '@assets': path.resolve(__dirname, './src/assets'),
-      '@components': path.resolve(__dirname, './src/components'),
+    alias: [
+      {
+        find: '@',
+        replacement: fileURLToPath(new URL('./src', import.meta.url)),
+      },
+      {
+        find: '@assets',
+        replacement: fileURLToPath(new URL('./src/assets', import.meta.url)),
+      },
+      {
+        find: '@styles',
+        replacement: fileURLToPath(new URL('./src/styles', import.meta.url)),
+      },
+    ],
+  },
+  css: {
+    preprocessorOptions: {
+      scss: {
+        additionalData: `
+          @import "./src/styles/mixins.scss";
+          @import "./src/styles/breakpoints.scss";
+        `,
+      },
     },
   },
-  plugins: [react()],
+  server: {
+    host: true,
+    strictPort: true,
+    port: 5500,
+  },
 })

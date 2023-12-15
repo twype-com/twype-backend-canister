@@ -1,0 +1,40 @@
+.actions {
+  position: relative;
+}
+
+.button {
+  position: relative;
+  background: transparent;
+  color: var(--color-text-primary);
+  font-size: var(--font-large);
+
+  &:hover {
+    background: var(--color-background-hover);
+  }
+}
+
+.search {
+  display: none;
+  @include device(mobile) {
+    display: block;
+  }
+}
+
+.upload {
+  @include device(miniMobile) {
+    display: none;
+  }
+}
+
+.uploadText {
+  display: none;
+  @include device(notMobile) {
+    display: block;
+  }
+}
+
+.badge {
+  position: absolute;
+  top: 0;
+  right: 0;
+}

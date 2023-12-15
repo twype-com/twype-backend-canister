@@ -1,0 +1,39 @@
+.header {
+  min-width: var(--device-min-size);
+  background: var(--color-background);
+  box-shadow: 0 0 0 1px var(--color-border);
+  color: var(--color-text-primary);
+}
+
+.container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-base);
+  height: var(--panel-size, 60px);
+  padding: 0 var(--space-base);
+}
+
+.logo {
+  flex: 0 0 auto;
+  font-size: var(--font-bigger);
+}
+
+.search {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  max-width: 400px;
+  height: var(--size-control-base);
+  background: #eee;
+  color: #b1b1b1;
+
+  @include device(mobile) {
+    display: none;
+  }
+}
+
+.actions {
+  flex: 0 0 auto;
+}

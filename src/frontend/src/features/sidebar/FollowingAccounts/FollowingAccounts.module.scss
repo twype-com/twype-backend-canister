@@ -1,0 +1,42 @@
+.following {
+  margin: var(--space-big) 0 0;
+  padding: var(--space-big) var(--space-base);
+  border-block-start: 1px solid var(--color-border);
+
+  @include device(mobile) {
+    padding-inline: 0;
+  }
+}
+
+.title {
+  margin: 0 0 var(--space-base) 0;
+  padding: 0;
+  color: var(--color-text-secondary);
+  font-size: var(--font-small);
+  font-weight: var(--font-medium);
+
+  @include device(mobile) {
+    display: none;
+  }
+}
+
+.list {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.item {
+  &:not(:first-child) {
+    margin-block-start: var(--space-base);
+
+    @include device(mobile) {
+      margin-block-start: var(--space-small);
+    }
+  }
+
+  @include device(mobile) {
+    display: flex;
+    justify-content: center;
+  }
+}

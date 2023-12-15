@@ -1,0 +1,33 @@
+.meeting {
+  --meeting-participant-size: 80px;
+  --meeting-desktop-sidebar: 300px;
+
+  position: fixed;
+  z-index: 200;
+  inset: 0;
+  background: var(--color-background-alt);
+  color: var(--color-text-alt);
+
+  @include device(desktop) {
+    position: relative;
+    inset: unset;
+    height: 800px;
+    max-height: calc(100vh - var(--panel-size));
+  }
+}
+
+.content {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  position: absolute;
+  inset: 0;
+
+  @include device(desktop) {
+    position: absolute;
+    inset: 0 0 0 auto;
+    width: var(--meeting-desktop-sidebar);
+    border: 1px solid var(--color-border);
+    background: var(--color-background);
+  }
+}

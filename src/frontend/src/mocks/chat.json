@@ -1,0 +1,602 @@
+[
+  {
+    "id": 1,
+    "nickname": "JohnDoe",
+    "photoUrl": "/images/johndoe.png",
+    "text": "Wow, this stream is amazing!"
+  },
+  {
+    "id": 2,
+    "nickname": "JaneDoe",
+    "photoUrl": "/images/janedoe.png",
+    "text": "I agree, it's so much fun!"
+  },
+  {
+    "id": 3,
+    "nickname": "GamerDude",
+    "photoUrl": "/images/gamerdude.png",
+    "text": "I'm so glad I found this stream!"
+  },
+  {
+    "id": 4,
+    "nickname": "StreamerGirl",
+    "photoUrl": "/images/streamergirl.png",
+    "text": "Thank you so much for watching! I'm glad you're enjoying it."
+  },
+  {
+    "id": 5,
+    "nickname": "JohnDoe",
+    "photoUrl": "/images/johndoe.png",
+    "text": "Your commentary is so informative!"
+  },
+  {
+    "id": 6,
+    "nickname": "JaneDoe",
+    "photoUrl": "/images/janedoe.png",
+    "text": "And your gameplay is so impressive!"
+  },
+  {
+    "id": 7,
+    "nickname": "GamerDude",
+    "photoUrl": "/images/gamerdude.png",
+    "text": "You're a natural at this!"
+  },
+  {
+    "id": 8,
+    "nickname": "StreamerGirl",
+    "photoUrl": "/images/streamergirl.png",
+    "text": "Thank you so much for your kind words! I'm always working to improve."
+  },
+  {
+    "id": 9,
+    "nickname": "JohnDoe",
+    "photoUrl": "/images/johndoe.png",
+    "text": "I'm definitely going to subscribe!"
+  },
+  {
+    "id": 10,
+    "nickname": "JaneDoe",
+    "photoUrl": "/images/janedoe.png",
+    "text": "Me too!"
+  },
+  {
+    "id": 11,
+    "nickname": "GamerDude",
+    "photoUrl": "/images/gamerdude.png",
+    "text": "Same here!"
+  },
+  {
+    "id": 12,
+    "nickname": "StreamerGirl",
+    "photoUrl": "/images/streamergirl.png",
+    "text": "Thank you so much for your support! I really appreciate it."
+  },
+  {
+    "id": 13,
+    "nickname": "JohnDoe",
+    "photoUrl": "/images/johndoe.png",
+    "text": "I can't wait to see what you do next!"
+  },
+  {
+    "id": 14,
+    "nickname": "JaneDoe",
+    "photoUrl": "/images/janedoe.png",
+    "text": "Same here!"
+  },
+  {
+    "id": 15,
+    "nickname": "GamerDude",
+    "photoUrl": "/images/gamerdude.png",
+    "text": "Me too!"
+  },
+  {
+    "id": 16,
+    "nickname": "JohnDoe",
+    "photoUrl": "/images/johndoe.png",
+    "text": "I'm learning so much from you!"
+  },
+  {
+    "id": 17,
+    "nickname": "JaneDoe",
+    "photoUrl": "/images/janedoe.png",
+    "text": "Me too! I'm a total beginner, and you're making it so easy to understand."
+  },
+  {
+    "id": 18,
+    "nickname": "GamerDude",
+    "photoUrl": "/images/gamerdude.png",
+    "text": "I'm always looking for new tips and tricks, and you're always delivering."
+  },
+  {
+    "id": 19,
+    "nickname": "StreamerGirl",
+    "photoUrl": "/images/streamergirl.png",
+    "text": "I'm so glad to hear that! I love teaching people new things."
+  },
+  {
+    "id": 20,
+    "nickname": "JohnDoe",
+    "photoUrl": "/images/johndoe.png",
+    "text": "I also love your sense of humor! You always make me laugh."
+  },
+  {
+    "id": 21,
+    "nickname": "JaneDoe",
+    "photoUrl": "/images/janedoe.png",
+    "text": "Same here! You're so funny and relatable."
+  },
+  {
+    "id": 22,
+    "nickname": "GamerDude",
+    "photoUrl": "/images/gamerdude.png",
+    "text": "I'm always cracking up during your streams."
+  },
+  {
+    "id": 23,
+    "nickname": "StreamerGirl",
+    "photoUrl": "/images/streamergirl.png",
+    "text": "Thanks! I'm glad you enjoy my sense of humor."
+  },
+  {
+    "id": 24,
+    "nickname": "JohnDoe",
+    "photoUrl": "/images/johndoe.png",
+    "text": "I can't wait to watch more of your streams!"
+  },
+  {
+    "id": 25,
+    "nickname": "JaneDoe",
+    "photoUrl": "/images/janedoe.png",
+    "text": "Me too!"
+  },
+  {
+    "id": 26,
+    "nickname": "GamerDude",
+    "photoUrl": "/images/gamerdude.png",
+    "text": "Same here!"
+  },
+  {
+    "id": 27,
+    "nickname": "StreamerGirl",
+    "photoUrl": "/images/streamergirl.png",
+    "text": "Thanks for watching! I'll see you next time."
+  },
+  {
+    "id": 28,
+    "nickname": "JohnDoe",
+    "photoUrl": "/images/johndoe.png",
+    "text": "Bye, StreamerGirl! Thanks for the great stream!"
+  },
+  {
+    "id": 29,
+    "nickname": "JaneDoe",
+    "photoUrl": "/images/janedoe.png",
+    "text": "Bye, StreamerGirl! See you soon!"
+  },
+  {
+    "id": 30,
+    "nickname": "GamerDude",
+    "photoUrl": "/images/gamerdude.png",
+    "text": "Bye, StreamerGirl! It was a pleasure watching you!"
+  },
+  {
+    "id": 31,
+    "nickname": "JohnDoe",
+    "photoUrl": "/images/johndoe.png",
+    "text": "That was an awesome win!"
+  },
+  {
+    "id": 32,
+    "nickname": "JaneDoe",
+    "photoUrl": "/images/janedoe.png",
+    "text": "I can't believe you pulled that off!"
+  },
+  {
+    "id": 33,
+    "nickname": "GamerDude",
+    "photoUrl": "/images/gamerdude.png",
+    "text": "That was some next-level gameplay!"
+  },
+  {
+    "id": 34,
+    "nickname": "StreamerGirl",
+    "photoUrl": "/images/streamergirl.png",
+    "text": "Thanks! I was pretty lucky, but I'll take it."
+  },
+  {
+    "id": 35,
+    "nickname": "JohnDoe",
+    "photoUrl": "/images/johndoe.png",
+    "text": "You're always so clutch in those situations!"
+  },
+  {
+    "id": 36,
+    "nickname": "JaneDoe",
+    "photoUrl": "/images/janedoe.png",
+    "text": "I know, right? She's always coming up with something amazing."
+  },
+  {
+    "id": 37,
+    "nickname": "GamerDude",
+    "photoUrl": "/images/gamerdude.png",
+    "text": "She's a true inspiration."
+  },
+  {
+    "id": 38,
+    "nickname": "StreamerGirl",
+    "photoUrl": "/images/streamergirl.png",
+    "text": "Thank you so much! That means a lot to me."
+  },
+  {
+    "id": 39,
+    "nickname": "JohnDoe",
+    "photoUrl": "/images/johndoe.png",
+    "text": "I'm so glad I found your stream!"
+  },
+  {
+    "id": 40,
+    "nickname": "JaneDoe",
+    "photoUrl": "/images/janedoe.png",
+    "text": "Me too!"
+  },
+  {
+    "id": 41,
+    "nickname": "GamerDude",
+    "photoUrl": "/images/gamerdude.png",
+    "text": "Same here!"
+  },
+  {
+    "id": 42,
+    "nickname": "StreamerGirl",
+    "photoUrl": "/images/streamergirl.png",
+    "text": "Thanks for watching! I'll see you next time."
+  },
+  {
+    "id": 43,
+    "nickname": "JohnDoe",
+    "photoUrl": "/images/johndoe.png",
+    "text": "Bye, StreamerGirl! Thanks for the great stream!"
+  },
+  {
+    "id": 44,
+    "nickname": "JaneDoe",
+    "photoUrl": "/images/janedoe.png",
+    "text": "Bye, StreamerGirl! See you soon!"
+  },
+  {
+    "id": 45,
+    "nickname": "GamerDude",
+    "photoUrl": "/images/gamerdude.png",
+    "text": "Bye, StreamerGirl! It was a pleasure watching you!"
+  },
+  {
+    "id": 46,
+    "nickname": "JohnDoe",
+    "photoUrl": "/images/johndoe.png",
+    "text": "That was a great stream! I learned so much."
+  },
+  {
+    "id": 47,
+    "nickname": "JaneDoe",
+    "photoUrl": "/images/janedoe.png",
+    "text": "Me too! I'm definitely going to try some of the tips you gave."
+  },
+  {
+    "id": 48,
+    "nickname": "GamerDude",
+    "photoUrl": "/images/gamerdude.png",
+    "text": "I'm always looking for new ways to improve, and your stream was definitely helpful."
+  },
+  {
+    "id": 49,
+    "nickname": "StreamerGirl",
+    "photoUrl": "/images/streamergirl.png",
+    "text": "I'm glad you found my stream helpful! That's what I'm here for."
+  },
+  {
+    "id": 50,
+    "nickname": "JohnDoe",
+    "photoUrl": "/images/johndoe.png",
+    "text": "I also really enjoyed your sense of humor. You always know how to make me laugh."
+  },
+  {
+    "id": 51,
+    "nickname": "JaneDoe",
+    "photoUrl": "/images/janedoe.png",
+    "text": "Same here! You're so funny and relatable."
+  },
+  {
+    "id": 52,
+    "nickname": "GamerDude",
+    "photoUrl": "/images/gamerdude.png",
+    "text": "You're one of the funniest streamers I've ever watched."
+  },
+  {
+    "id": 53,
+    "nickname": "StreamerGirl",
+    "photoUrl": "/images/streamergirl.png",
+    "text": "Thanks! I'm glad you enjoy my sense of humor."
+  },
+  {
+    "id": 54,
+    "nickname": "JohnDoe",
+    "photoUrl": "/images/johndoe.png",
+    "text": "I'm definitely going to subscribe to your channel. I can't wait to see what you do next!"
+  },
+  {
+    "id": 55,
+    "nickname": "JaneDoe",
+    "photoUrl": "/images/janedoe.png",
+    "text": "Me too!"
+  },
+  {
+    "id": 56,
+    "nickname": "GamerDude",
+    "photoUrl": "/images/gamerdude.png",
+    "text": "Same here!"
+  },
+  {
+    "id": 57,
+    "nickname": "StreamerGirl",
+    "photoUrl": "/images/streamergirl.png",
+    "text": "Thank you so much for your support! I'm so glad you're enjoying my stream."
+  },
+  {
+    "id": 58,
+    "nickname": "JohnDoe",
+    "photoUrl": "/images/johndoe.png",
+    "text": "Bye, StreamerGirl! Thanks for the great stream!"
+  },
+  {
+    "id": 59,
+    "nickname": "JaneDoe",
+    "photoUrl": "/images/janedoe.png",
+    "text": "Bye, StreamerGirl! See you soon!"
+  },
+  {
+    "id": 60,
+    "nickname": "GamerDude",
+    "photoUrl": "/images/gamerdude.png",
+    "text": "Bye, StreamerGirl! It was a pleasure watching you!"
+  },
+  {
+    "id": 61,
+    "nickname": "JohnDoe",
+    "photoUrl": "/images/johndoe.png",
+    "text": "That was an amazing stream! I'm so glad I found your channel."
+  },
+  {
+    "id": 62,
+    "nickname": "JaneDoe",
+    "photoUrl": "/images/janedoe.png",
+    "text": "Me too! You're one of the best streamers I've ever watched."
+  },
+  {
+    "id": 63,
+    "nickname": "GamerDude",
+    "photoUrl": "/images/gamerdude.png",
+    "text": "I'm definitely going to be a regular viewer."
+  },
+  {
+    "id": 64,
+    "nickname": "StreamerGirl",
+    "photoUrl": "/images/streamergirl.png",
+    "text": "Thank you so much for your kind words! I'm so glad you're enjoying my stream."
+  },
+  {
+    "id": 65,
+    "nickname": "JohnDoe",
+    "photoUrl": "/images/johndoe.png",
+    "text": "I also really appreciate how you interact with your viewers. You always make us feel welcome."
+  },
+  {
+    "id": 66,
+    "nickname": "JaneDoe",
+    "photoUrl": "/images/janedoe.png",
+    "text": "I agree! You're always so friendly and welcoming."
+  },
+  {
+    "id": 67,
+    "nickname": "GamerDude",
+    "photoUrl": "/images/gamerdude.png",
+    "text": "You're a great role model for other streamers."
+  },
+  {
+    "id": 68,
+    "nickname": "StreamerGirl",
+    "photoUrl": "/images/streamergirl.png",
+    "text": "Thank you so much! That means a lot to me."
+  },
+  {
+    "id": 69,
+    "nickname": "JohnDoe",
+    "photoUrl": "/images/johndoe.png",
+    "text": "I can't wait to see what you do next! Keep up the great work."
+  },
+  {
+    "id": 70,
+    "nickname": "JaneDoe",
+    "photoUrl": "/images/janedoe.png",
+    "text": "Me too!"
+  },
+  {
+    "id": 71,
+    "nickname": "GamerDude",
+    "photoUrl": "/images/gamerdude.png",
+    "text": "Same here!"
+  },
+  {
+    "id": 72,
+    "nickname": "StreamerGirl",
+    "photoUrl": "/images/streamergirl.png",
+    "text": "Thank you so much for your support! I'll keep working hard to make my stream the best it can be."
+  },
+  {
+    "id": 73,
+    "nickname": "JohnDoe",
+    "photoUrl": "/images/johndoe.png",
+    "text": "Bye, StreamerGirl! Thanks for the great stream!"
+  },
+  {
+    "id": 74,
+    "nickname": "JaneDoe",
+    "photoUrl": "/images/janedoe.png",
+    "text": "Bye, StreamerGirl! See you soon!"
+  },
+  {
+    "id": 75,
+    "nickname": "GamerDude",
+    "photoUrl": "/images/gamerdude.png",
+    "text": "Bye, StreamerGirl! It was a pleasure watching you!"
+  },
+  {
+    "id": 76,
+    "nickname": "JohnDoe",
+    "photoUrl": "/images/johndoe.png",
+    "text": "Hey, StreamerGirl! I just wanted to say that I really appreciate your stream. You're always so positive and upbeat, and it's a great way to relax and de-stress after a long day."
+  },
+  {
+    "id": 77,
+    "nickname": "JaneDoe",
+    "photoUrl": "/images/janedoe.png",
+    "text": "I agree! Your stream is always a breath of fresh air."
+  },
+  {
+    "id": 78,
+    "nickname": "GamerDude",
+    "photoUrl": "/images/gamerdude.png",
+    "text": "I'm so glad to hear that! I always try to create a positive and welcoming environment for my viewers."
+  },
+  {
+    "id": 79,
+    "nickname": "JohnDoe",
+    "photoUrl": "/images/johndoe.png",
+    "text": "You're doing a great job. I'll definitely be back to watch your stream again soon."
+  },
+  {
+    "id": 80,
+    "nickname": "JaneDoe",
+    "photoUrl": "/images/janedoe.png",
+    "text": "Me too!"
+  },
+  {
+    "id": 81,
+    "nickname": "GamerDude",
+    "photoUrl": "/images/gamerdude.png",
+    "text": "Thank you so much! I'm always looking for ways to improve my stream, so your feedback is really helpful."
+  },
+  {
+    "id": 82,
+    "nickname": "JohnDoe",
+    "photoUrl": "/images/johndoe.png",
+    "text": "By the way, I really liked the new game you were playing today. It looks really fun."
+  },
+  {
+    "id": 83,
+    "nickname": "JaneDoe",
+    "photoUrl": "/images/janedoe.png",
+    "text": "I agree! I'm definitely going to check it out."
+  },
+  {
+    "id": 84,
+    "nickname": "GamerDude",
+    "photoUrl": "/images/gamerdude.png",
+    "text": "Thanks! I'm really enjoying it so far."
+  },
+  {
+    "id": 85,
+    "nickname": "JohnDoe",
+    "photoUrl": "/images/johndoe.png",
+    "text": "I can tell! You were playing really well."
+  },
+  {
+    "id": 86,
+    "nickname": "JaneDoe",
+    "photoUrl": "/images/janedoe.png",
+    "text": "Yeah, she was on fire!"
+  },
+  {
+    "id": 87,
+    "nickname": "GamerDude",
+    "photoUrl": "/images/gamerdude.png",
+    "text": "Thanks! I'm always trying to improve my skills."
+  },
+  {
+    "id": 88,
+    "nickname": "JohnDoe",
+    "photoUrl": "/images/johndoe.png",
+    "text": "Well, you're definitely doing a great job."
+  },
+  {
+    "id": 89,
+    "nickname": "JaneDoe",
+    "photoUrl": "/images/janedoe.png",
+    "text": "Me too!"
+  },
+  {
+    "id": 90,
+    "nickname": "GamerDude",
+    "photoUrl": "/images/gamerdude.png",
+    "text": "Thanks for the kind words! I'm glad you're enjoying my stream."
+  },
+  {
+    "id": 91,
+    "nickname": "JohnDoe",
+    "photoUrl": "/images/johndoe.png",
+    "text": "Hey, StreamerGirl! I just wanted to say that I'm really proud of you for all your hard work. You've come a long way since you first started streaming, and it's so inspiring to see how much you've grown."
+  },
+  {
+    "id": 92,
+    "nickname": "JaneDoe",
+    "photoUrl": "/images/janedoe.png",
+    "text": "I agree! She's an inspiration to us all."
+  },
+  {
+    "id": 93,
+    "nickname": "GamerDude",
+    "photoUrl": "/images/gamerdude.png",
+    "text": "Thank you so much! It means a lot to me to hear that."
+  },
+  {
+    "id": 94,
+    "nickname": "JohnDoe",
+    "photoUrl": "/images/johndoe.png",
+    "text": "I can't wait to see what you do next! I know you're going to keep achieving great things."
+  },
+  {
+    "id": 95,
+    "nickname": "JaneDoe",
+    "photoUrl": "/images/janedoe.png",
+    "text": "Me too!"
+  },
+  {
+    "id": 96,
+    "nickname": "GamerDude",
+    "photoUrl": "/images/gamerdude.png",
+    "text": "Thank you for your support! I'll keep working hard to make my dreams come true."
+  },
+  {
+    "id": 97,
+    "nickname": "JohnDoe",
+    "photoUrl": "/images/johndoe.png",
+    "text": "Bye, StreamerGirl! Thanks for the great stream!"
+  },
+  {
+    "id": 98,
+    "nickname": "JaneDoe",
+    "photoUrl": "/images/janedoe.png",
+    "text": "Bye, StreamerGirl! See you soon!"
+  },
+  {
+    "id": 99,
+    "nickname": "GamerDude",
+    "photoUrl": "/images/gamerdude.png",
+    "text": "Bye, everyone! It was a pleasure streaming for you today."
+  },
+  {
+    "id": 100,
+    "nickname": "StreamerGirl",
+    "photoUrl": "/images/streamergirl.png",
+    "text": "Bye, everyone! Thanks for watching!"
+  }
+]
