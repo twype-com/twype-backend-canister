@@ -1,8 +1,7 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
 import { FC } from 'react'
 import cn from 'classnames'
 
-import { GridLayout, ParticipantTile, useParticipants, useTracks } from '@livekit/components-react'
+import { GridLayout, ParticipantTile, useTracks } from '@livekit/components-react'
 
 import styles from './MeetingCompanion.module.scss'
 import { Track } from 'livekit-client'

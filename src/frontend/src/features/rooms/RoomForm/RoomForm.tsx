@@ -1,11 +1,10 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
-import { FC, FormEvent, useCallback, useMemo, useState } from 'react'
+import { FC, useCallback, useState } from 'react'
 import cn from 'classnames'
 import { customAlphabet } from 'nanoid'
 import { nolookalikes } from 'nanoid-dictionary'
 import { useEffectOnce } from 'react-use'
 import * as Form from '@radix-ui/react-form'
-import { Button } from '@radix-ui/themes'
+// import { Button } from '@radix-ui/themes'
 import { Spinner } from '@/components/Spinner/Spinner'
 import Input from '@/components/Input/Input'
 import { NewRoom } from '@/features/rooms/types'
@@ -16,7 +15,7 @@ type RoomFormProps = {
   onSubmit: (room: NewRoom) => void
 }
 
-export const RoomForm: FC<RoomFormProps> = ({ className, onSubmit }) => {
+export const RoomForm: FC<RoomFormProps> = ({ className }) => {
   const [isLoading, setIsLoading] = useState(false)
   const [roomName, setRoomName] = useState<string>('')
   const [roomCode, setRoomCode] = useState<string>('')
@@ -37,18 +36,18 @@ export const RoomForm: FC<RoomFormProps> = ({ className, onSubmit }) => {
     generateRoomSlug()
   })
 
-  const canSubmit = useMemo(() => {
-    return !!roomName && !!roomCode
-  }, [roomCode, roomName])
+  // const canSubmit = useMemo(() => {
+  //   return !!roomName && !!roomCode
+  // }, [roomCode, roomName])
 
-  const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
-    event.preventDefault()
-    onSubmit({
-      name: roomName,
-      emptyTimeout: roomTimeout ? Number(roomTimeout) : undefined,
-      maxParticipants: maxParticipants ? Number(maxParticipants) : undefined,
-    })
-  }
+  // const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
+  //   event.preventDefault()
+  //   onSubmit({
+  //     name: roomName,
+  //     emptyTimeout: roomTimeout ? Number(roomTimeout) : undefined,
+  //     maxParticipants: maxParticipants ? Number(maxParticipants) : undefined,
+  //   })
+  // }
 
   return (
     <div className={cn(className)}>

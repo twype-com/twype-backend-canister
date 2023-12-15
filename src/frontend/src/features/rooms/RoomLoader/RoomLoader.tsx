@@ -1,5 +1,4 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
-import { FC, useState } from 'react'
+import { FC, useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 import { Room } from 'livekit-client'
 import { Article } from '@/components/Article/Article'
@@ -8,9 +7,16 @@ import { Loader } from '@/components/Loader/Loader'
 
 export const RoomLoader: FC = () => {
   // const { room: roomName } = useParams()
-  const [token, setToken] = useState('')
+  const token = ''
 
   const [roomOnline, setRoomOnline] = useState<Room | null>(null)
+
+  // @TODO: remove
+  useEffect(() => {
+    if (false) {
+      setRoomOnline(null)
+    }
+  }, [])
 
   return (
     <Article title={'Room ${roomName}'} backUrl="/rooms">

@@ -1,7 +1,7 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
-import { FC, useCallback, useEffect } from 'react'
+import { FC, useEffect } from 'react'
 import cn from 'classnames'
-import { useDisconnectButton, useRoomContext } from '@livekit/components-react'
+import { useRoomContext } from '@livekit/components-react'
+// import { useDisconnectButton, useRoomContext } from '@livekit/components-react'
 
 import { MeetingAuthor } from '@/features/meeting/MeetingAuthor/MeetingAuthor'
 import { MeetingControl } from '@/features/meeting/MeetingControl/MeetingControl'
@@ -30,7 +30,7 @@ export const MeetingBar: FC<MeetingBarProps> = ({
   onSubscribe,
   onClose,
 }) => {
-  const { buttonProps } = useDisconnectButton({ stopTracks: true })
+  // const { buttonProps } = useDisconnectButton({ stopTracks: true })
   const room = useRoomContext()
 
   useEffect(() => {
@@ -43,10 +43,10 @@ export const MeetingBar: FC<MeetingBarProps> = ({
     room.localParticipant.setCameraEnabled(!!isCamOn)
   }, [isCamOn, room])
 
-  const handleDisconnect = useCallback(() => {
-    buttonProps.onClick()
-    onClose()
-  }, [buttonProps, onClose])
+  // const handleDisconnect = useCallback(() => {
+  //   buttonProps.onClick()
+  //   onClose()
+  // }, [buttonProps, onClose])
 
   return (
     <div className={cn(styles.bar, { [styles.visible]: isVisible })}>

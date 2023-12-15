@@ -1,5 +1,3 @@
-/* eslint-disable @typescript-eslint/ban-ts-comment */
-/* eslint-disable @typescript-eslint/no-unused-vars */
 import { FC, useCallback, useState } from 'react'
 import useUserStore from '@/features/user/store'
 import { MeetingBar } from '@/features/meeting/MeetingBar/MeetingBar'
@@ -13,7 +11,6 @@ import participants from '@/mocks/participants.json'
 
 export const MeetingLayout: FC = () => {
   // const router = useRouter()
-  const [isBarVisible, setIsBarVisible] = useState(true)
   const [isMicOn, setIsMicOn] = useState(true)
   const [isCamOn, setIsCamOn] = useState(true)
   const [isSubscribed, setIsSubscribed] = useState(false)
@@ -43,7 +40,7 @@ export const MeetingLayout: FC = () => {
     <div className={styles.meeting}>
       <MeetingLiveKit token={token}>
         <MeetingBar
-          isVisible={isBarVisible}
+          isVisible={true}
           isMicOn={isMicOn}
           isCamOn={isCamOn}
           isSubscribed={isSubscribed}

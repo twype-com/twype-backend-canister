@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
 import { FC } from 'react'
 import cn from 'classnames'
 import { Track } from 'livekit-client'
@@ -14,7 +13,7 @@ type MeetingParticipantsProps = {
   participants: Participant[]
 }
 
-export const MeetingParticipants: FC<MeetingParticipantsProps> = ({ participants }) => {
+export const MeetingParticipants: FC<MeetingParticipantsProps> = () => {
   return (
     <div className={cn(styles.participants)}>
       <ul className={styles.list}>

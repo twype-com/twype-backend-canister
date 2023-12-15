@@ -17,17 +17,7 @@ type UserProps = Person & {
   className?: string
 }
 
-/* eslint-disable @typescript-eslint/no-unused-vars */
-
-export const User: FC<UserProps> = ({
-  className,
-  size = 'medium',
-  nickName,
-  fullName,
-  photoUrl,
-  isOnline,
-  isVerified,
-}) => {
+export const User: FC<UserProps> = ({ className, nickName, fullName }) => {
   return (
     <div className={cn(styles.user, className)}>
       <div className={styles.avatar}>

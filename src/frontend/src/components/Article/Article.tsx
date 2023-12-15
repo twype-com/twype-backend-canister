@@ -38,7 +38,7 @@ export const Article: FC<PropsWithChildren<ArticleProps>> = ({
       {(title || (buttonText && onClick)) && (
         <header className={styles.header}>
           {backUrl && (
-            <Link href={backUrl} className={styles.back}>
+            <Link to={backUrl} className={styles.back}>
               <ArrowCircleLeft />
             </Link>
           )}
@@ -51,7 +51,7 @@ export const Article: FC<PropsWithChildren<ArticleProps>> = ({
           {buttonText && (
             <div className={styles.actions}>
               {buttonUrl && !onClick && (
-                <Link href={buttonUrl} className={styles.action}>
+                <Link to={buttonUrl} className={styles.action}>
                   <Button>{buttonText}</Button>
                 </Link>
               )}
