@@ -4,3 +4,11 @@ node_modules/
 target/
 declarations/
 ledger.did
+
+# misc
+.DS_Store
+
+# local env files
+.env*.local
+
+certificates
