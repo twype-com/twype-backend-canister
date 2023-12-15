@@ -6,7 +6,7 @@ all: install
 .PHONY: node_modules
 .SILENT: node_modules
 node_modules:
-	pushd src/frontend; npm install; popd
+	pushd src/frontend; vnm use 20; pnpm install; popd
 
 .PHONY: install
 .SILENT: install
@@ -28,7 +28,7 @@ build:
 .PHONY: frontend
 .SILENT: frontend
 frontend: node_modules
-	cd src/frontend && npm run dev
+	cd src/frontend && pnpm run dev
 
 .PHONY: test
 .SILENT: test
