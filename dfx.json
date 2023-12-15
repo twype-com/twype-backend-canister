@@ -23,7 +23,7 @@
     },
     "frontend": {
       "dependencies": ["twype_token"],
-      "source": ["src/frontend_assets"],
+      "source": ["src/frontend/dist"],
       "type": "assets"
     }
   },
