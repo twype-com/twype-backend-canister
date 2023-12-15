@@ -6,8 +6,8 @@ import './App.css'
 function App() {
   const [count, setCount] = useState(0)
   console.log('🚀 ~ App ~ count:', count)
-  console.log('🚀 ~ process.env:', process.env)
-  console.log('🚀 ~ process.env.DFX_NETWORK:', process.env.DFX_NETWORK)
+  console.log('🚀 ~ process.env:', import.meta.env)
+  console.log('🚀 ~ process.env.DFX_NETWORK:', import.meta.env.DFX_NETWORK)
 
   return (
     <>
