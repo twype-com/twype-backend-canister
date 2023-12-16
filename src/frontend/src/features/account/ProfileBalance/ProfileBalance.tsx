@@ -12,7 +12,7 @@ type ProfileBalanceProps = {
 export const ProfileBalance: FC<ProfileBalanceProps> = ({ className }) => {
   const [isDialogOpen, setIsDialogOpen] = useState(false)
   const [tradingType, setTradingType] = useState<'sell' | 'buy' | null>(null)
-  const { balance, deposit } = useInternetIdentity()
+  const { balance, deposit, withdraw } = useInternetIdentity()
 
   useEffect(() => {
     if (!isDialogOpen) {
@@ -33,7 +33,11 @@ export const ProfileBalance: FC<ProfileBalanceProps> = ({ className }) => {
   const handleSell = useCallback((num: number) => {
     console.log('🚀 ~ handleSell ~ num:', num)
     setIsDialogOpen(false)
-  }, [])
+
+    if (withdraw) {
+      withdraw(num)
+    }
+  }, [withdraw])
 
   const handleBuy = useCallback((num: number) => {
     console.log('🚀 ~ handleBuy ~ num:', num)

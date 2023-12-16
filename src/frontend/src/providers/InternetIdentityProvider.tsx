@@ -29,6 +29,7 @@ export const InternetIdentityContext = createContext<{
   ledgerActor: any
   balance: any
   deposit: any
+  withdraw: any,
 }>({
   client: null,
   login: null,
@@ -38,6 +39,7 @@ export const InternetIdentityContext = createContext<{
   ledgerActor: null,
   balance: null,
   deposit: null,
+  withdraw: null,
 })
 
 export const InternetIdentityProvider: FC<PropsWithChildren> = ({ children }) => {
@@ -172,8 +174,22 @@ export const InternetIdentityProvider: FC<PropsWithChildren> = ({ children }) =>
     return response;
   }, [ledgerActor, address, twypeTokenActor, balance, fetchUserBalance])
 
+  const withdraw = useCallback(async (amount: number) => {
+    if (!ledgerActor || !balance || !principal || !address || !twypeTokenActor) return
+    
+    const response = await twypeTokenActor.withdraw(
+      balance.canisterPrincipal,
+      amount,
+      principal
+    );
+
+    await fetchUserBalance()
+
+    return response;
+  }, [ledgerActor, balance, principal, address, twypeTokenActor, fetchUserBalance])
+
   return (
-    <InternetIdentityContext.Provider value={{ client, login, principal, actor, twypeTokenActor, ledgerActor, balance, deposit }}>
+    <InternetIdentityContext.Provider value={{ client, login, principal, actor, twypeTokenActor, ledgerActor, balance, deposit, withdraw }}>
       {children}
     </InternetIdentityContext.Provider>
   )
