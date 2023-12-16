@@ -1,0 +1,10 @@
+.balance {
+  margin: 0 0 var(--space-base) 0;
+}
+
+.actions {
+  display: flex;
+  align-items: center;
+  gap: var(--space-small);
+  margin: var(--space-tiny) 0 0 0;
+}
