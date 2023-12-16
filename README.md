@@ -13,5 +13,5 @@ make install
 Mint ICP tokens (replace with your principal):
 
 ```sh
-make init-local II_PRINCIPAL=ymntt-be67d-o5yyq-e7ozv-rch65-wwfkj-jwqg5-exk7x-qwexr-kv75v-dae
+make init-local II_PRINCIPAL=xxt6q-q5qwu-kcclz-jdcs4-f6vgx-5cxfx-6pleg-7y6yx-g7kqb-35qup-hae
 ```

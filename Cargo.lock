@@ -1039,6 +1039,16 @@ dependencies = [
 ]
 
 [[package]]
+name = "rust_decimal_macros"
+version = "1.33.1"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "2e43721f4ef7060ebc2c3ede757733209564ca8207f47674181bcd425dd76945"
+dependencies = [
+ "quote",
+ "rust_decimal",
+]
+
+[[package]]
 name = "rustix"
 version = "0.38.26"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -1338,6 +1348,7 @@ dependencies = [
  "num-bigint",
  "num-traits",
  "rust_decimal",
+ "rust_decimal_macros",
  "serde",
  "serde_derive",
  "tempfile",

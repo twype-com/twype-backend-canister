@@ -44,6 +44,8 @@ type Dex =
    getAllBalances: () -> (vec Balance) query;
    getBalance: (Token) -> (nat) query;
    getRTBalance: (nat) -> (nat) query;
+   getRTPrice: (nat,nat) -> (nat) query;
+   getRTSupply: (nat) -> (nat) query;
    getBalances: () -> (vec Balance) query;
    getDepositAddress: () -> (blob);
    getOrder: (OrderId) -> (opt Order);

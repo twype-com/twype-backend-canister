@@ -44,7 +44,7 @@
   let currentToken;
   let withdrawAmount = 0;
   // TODO: Use an input box for this value, too
-  let depositAmount = 100000;
+  let depositAmount = 10_000_000;
   let withdrawAddress = "";
 
   // Subscribe to plug wallet value should a user authenticate with Plug Wallet
@@ -120,6 +120,8 @@
       console.log("User Balances: ", allUserBalances);
 
       const rt1Balance = await backendActor.getRTBalance(1);
+      const rt1Price = await backendActor.getRTPrice(1, 100);
+      const rt1Supply = await backendActor.getRTSupply(1);
 
       for (let i = 0; i < $canisters.length; i++) {
         const principal = Principal.fromText($canisters[i].canisterId);
@@ -139,6 +141,8 @@
           dexBalance: dexBalance,
           principal: principal,
           roomBalance: rt1Balance,
+          rt1Price: rt1Price,
+          rt1Supply: rt1Supply,
         });
       }
 
@@ -293,7 +297,7 @@
     //     created_at_time: [],
     //   });
 
-    const result = await backendActor.buyRoomToken(1, 1000);
+    const result = await backendActor.buyRoomToken(1, 100);
     if (result.Ok) {
       console.log("buyRoomToken ok");
       // const dexBalance = await backendActor.getBalance(principal);
@@ -473,7 +477,9 @@
           <th>Canister Balance</th>
           <th></th>
           <th>Twype ICP Balance</th>
-          <th>Twype Room 1 Token Balance</th>
+          <th>RT1 Balance</th>
+          <th>1k RT1 Price</th>
+          <th>RT1 Supply</th>
         </thead>
         <tbody>
           {#each $userBalances as balance}
@@ -554,6 +560,16 @@
               <td>
                 {balance && balance.roomBalance
                   ? balance.roomBalance.toLocaleString()
+                  : "0"}
+              </td>
+              <td>
+                {balance && balance.rt1Price
+                  ? balance.rt1Price.toLocaleString()
+                  : "0"}
+              </td>
+              <td>
+                {balance && balance.rt1Supply
+                  ? balance.rt1Supply.toLocaleString()
                   : "0"}
               </td>
             </tr>

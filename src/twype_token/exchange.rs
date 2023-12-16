@@ -2,6 +2,9 @@ use std::collections::HashMap;
 
 use candid::{Nat, Principal};
 use ic_cdk::caller;
+use num_bigint::BigUint;
+use rust_decimal::prelude::*;
+use rust_decimal_macros::dec;
 
 use crate::types::*;
 use crate::{utils, OrderId};
@@ -23,22 +26,46 @@ pub struct Exchange {
     pub orders: Orders,
 }
 
-pub fn price(supply: Nat, amount: Nat) -> Nat {
-    let sum1 = if supply == utils::zero() {
-        utils::zero()
+const RT_DECIMALS: u32 = 8;
+
+pub fn get_price(supply: Decimal, amount: Decimal) -> Decimal {
+    let sum1 = if supply == Decimal::ZERO {
+        Decimal::ZERO
     } else {
-        (supply.to_owned() - 1) * (supply.to_owned()) * (utils::two() * (supply.to_owned() - 1) + 1)
-            / 6
+        (supply.to_owned() - Decimal::ONE)
+            * (supply.to_owned())
+            * (dec!(2) * (supply.to_owned() - Decimal::ONE) + Decimal::ONE)
+            / dec!(6)
     };
-    let sum2 = if supply == utils::zero() && amount == utils::one() {
-        utils::zero()
+    let sum2 = if supply == Decimal::ZERO && amount == Decimal::ZERO {
+        Decimal::ZERO
     } else {
-        (supply.to_owned() - 1 + amount.to_owned())
+        (supply.to_owned() - Decimal::ONE + amount.to_owned())
             * (supply.to_owned() + amount.to_owned())
-            * (utils::two() * (supply - 1 + amount) + 1)
-            / 6
+            * (dec!(2) * (supply - Decimal::ONE + amount) + Decimal::ONE)
+            / dec!(6)
     };
     sum2 - sum1
+}
+
+pub fn get_price_u128(supply: u128, amount: u128) -> u128 {
+    let sum1 = if supply == 0 {
+        0
+    } else {
+        (supply - 1) * (supply) * (2 * (supply - 1) + 1) / 6
+    };
+    let sum2 = if supply == 0 && amount == 0 {
+        0
+    } else {
+        (supply - 1 + amount) * (supply + amount) * (2 * (supply - 1 + amount) + 1) / 6
+    };
+    sum2 - sum1
+}
+
+pub fn dec_to_nat(v: Decimal, d: u32) -> Nat {
+    let amount_decimal_normalized = v * Decimal::TEN.powu(d as u64);
+    let amount_out_128 = (amount_decimal_normalized).to_u128().unwrap();
+    Nat(BigUint::from_u128(amount_out_128).unwrap())
 }
 
 impl RTSupply {
@@ -118,6 +145,24 @@ impl Balances {
 }
 
 impl Exchange {
+    pub fn get_rt_supply(&self, room: Nat) -> Nat {
+        self.rt_supply
+            .0
+            .get(&room)
+            .map_or(utils::one(), |v| v.to_owned())
+    }
+
+    pub fn get_rt_price(&self, room: Nat, amount: Nat) -> Nat {
+        let supply = self.get_rt_supply(room.to_owned()).0.to_u128().unwrap();
+        ic_cdk::println!("RT supply {supply}");
+        ic_cdk::println!("RT room {room}");
+        ic_cdk::println!("RT amount {amount}");
+
+        let price = get_price_u128(supply, amount.0.to_u128().unwrap());
+        ic_cdk::println!("RT price {price}");
+
+        Nat(BigUint::from_u128(price).unwrap())
+    }
     pub fn get_rt_balance(&self, room: Nat) -> Nat {
         self.rt_balances
             .0
