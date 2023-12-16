@@ -43,6 +43,12 @@ export const HeaderActions: FC = () => {
       </Tooltip>
 
       <HeaderUser />
+
+      <Link to="/users/me">
+        <Button variant="outline" color="gray" className={styles.upload}>
+          <span className={styles.uploadText}>Profile (tmp)</span>
+        </Button>
+      </Link>
     </div>
   )
 }
