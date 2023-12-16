@@ -13,7 +13,7 @@ type PostPreviewProps = {
 
 export const PostPreview: FC<PostPreviewProps> = ({
   title,
-  cover = '/images/twype.png',
+  cover = '/images/room.jpg',
   isOnline,
   usersOnline = 0,
   onClick,

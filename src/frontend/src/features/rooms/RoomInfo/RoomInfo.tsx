@@ -1,4 +1,5 @@
 import { TradeRoom } from '@/features/account/types'
+import { PostMedia } from '@/features/explore/PostMedia/PostMedia'
 import { TradingModal } from '@/features/trading/TradingModal/TradingModal'
 import { useInternetIdentity } from '@/hooks/useInternetIdentity'
 import { fromDecimals } from '@/utils/fromDecimals'
@@ -8,11 +9,20 @@ import { FC, useCallback, useEffect, useMemo, useState } from 'react'
 export const RoomInfo: FC = () => {
   const { balance, buy, sell } = useInternetIdentity()
 
-  const roomBuyPrice = useMemo(() => balance?.roomTokenBuyPrice ? fromDecimals(Number(balance?.roomTokenBuyPrice)) : null, [balance?.roomTokenBuyPrice])
+  const roomBuyPrice = useMemo(
+    () => (balance?.roomTokenBuyPrice ? fromDecimals(Number(balance?.roomTokenBuyPrice)) : null),
+    [balance?.roomTokenBuyPrice],
+  )
 
-  const roomSellPrice = useMemo(() => balance?.roomTokenSellPrice ? fromDecimals(Number(balance?.roomTokenSellPrice)) : null, [balance?.roomTokenSellPrice])
-  
-  const roomBalance = useMemo(() => balance?.roomBalance ? balance.roomBalance.toLocaleString() : null, [balance?.roomBalance])
+  const roomSellPrice = useMemo(
+    () => (balance?.roomTokenSellPrice ? fromDecimals(Number(balance?.roomTokenSellPrice)) : null),
+    [balance?.roomTokenSellPrice],
+  )
+
+  const roomBalance = useMemo(
+    () => (balance?.roomBalance ? balance.roomBalance.toLocaleString() : null),
+    [balance?.roomBalance],
+  )
 
   const room = {
     id: '1',
@@ -45,33 +55,39 @@ export const RoomInfo: FC = () => {
     setIsDialogOpen(true)
   }, [])
 
-  const handleSell = useCallback((num: number) => {
-    console.log('🚀 ~ handleSell ~ num:', num)
-    setIsDialogOpen(false)
+  const handleSell = useCallback(
+    (num: number) => {
+      console.log('🚀 ~ handleSell ~ num:', num)
+      setIsDialogOpen(false)
 
-    if (sell) {
-      sell(num)
-    }
-  }, [sell])
+      if (sell) {
+        sell(num)
+      }
+    },
+    [sell],
+  )
 
-  const handleBuy = useCallback((num: number) => {
-    console.log('🚀 ~ handleBuy ~ num:', num)
-    setIsDialogOpen(false)
+  const handleBuy = useCallback(
+    (num: number) => {
+      console.log('🚀 ~ handleBuy ~ num:', num)
+      setIsDialogOpen(false)
 
-    if (buy) {
-      buy(num)
-    }
-  }, [buy])
+      if (buy) {
+        buy(num)
+      }
+    },
+    [buy],
+  )
 
   return (
     <div>
       <p>
-        <i>The place for nice description and actions</i>
+        <PostMedia cover="/images/room.jpg" />
       </p>
       <p>Current ticket price: {roomBuyPrice ? `${roomBuyPrice?.toLocaleString()} ICP` : null}</p>
       <p>You have: {roomBalance} tickets</p>
 
-      <div>
+      <div style={{ display: 'flex', gap: '8px' }}>
         <Button color="pink" radius="full" size="2" onClick={() => startSell(room)}>
           Sell
         </Button>

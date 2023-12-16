@@ -59,7 +59,7 @@ dfx generate twype_token
 # dfx generate GoldenDIP20
 dfx generate ledger
 
-rm ./src/frontend/env/.env
+rm ./src/frontend/env/.env || true
 
 echo "VITE_INTERNET_IDENTITY_CANISTER_ID=$(dfx canister id internet_identity)" >> ./src/frontend/env/.env
 echo "VITE_TWYPE_TOKEN_CANISTER_ID=$(dfx canister id twype_token)" >> ./src/frontend/env/.env
