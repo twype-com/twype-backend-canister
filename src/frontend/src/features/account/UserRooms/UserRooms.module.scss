@@ -1,0 +1,42 @@
+.rooms {
+  margin: var(--space-large) 0 0;
+}
+
+.title {
+  margin: 0 0 var(--space-base);
+}
+
+.list {
+  --cell-width: 60px;
+
+  width: 800px;
+  max-width: 100%;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.item {
+  display: grid;
+  grid-template-columns: 1fr repeat(5, var(--cell-width));
+  align-items: center;
+  gap: var(--space-base);
+  padding: var(--space-small) 0;
+  border-block-end: 1px solid var(--color-border);
+}
+
+.itemHeader {
+  font-weight: var(--font-medium);
+  color: var(--color-text-secondary);
+}
+
+.name {
+  flex: 1;
+  font-weight: var(--font-medium);
+}
+
+.participants,
+.price,
+.own {
+  text-align: right;
+}

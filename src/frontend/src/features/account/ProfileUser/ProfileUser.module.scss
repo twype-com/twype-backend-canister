@@ -1,0 +1,11 @@
+.profile {
+  display: flex;
+  justify-content: flex-start;
+  align-items: stretch;
+  column-gap: var(--space-base);
+}
+
+.avatar {
+  --cmp-avatar-size: 128px;
+  flex: 0 0 auto;
+}

@@ -1,0 +1,37 @@
+.details {
+  display: flex;
+  flex-direction: column;
+  font-size: var(--font-little);
+}
+
+.details div {
+  padding: 0 0 var(--space-small) 0;
+}
+
+.details div:first-child {
+  padding: var(--space-base) 0 var(--space-small) 0;
+}
+
+.profileValues {
+  display: flex;
+  gap: var(--space-big);
+}
+
+.profileValue .value {
+  font-weight: var(--font-bold);
+}
+
+.description {
+  margin: 0;
+}
+
+.links {
+  display: flex;
+  gap: var(--space-small);
+  padding-top: 0;
+}
+
+.link {
+  font-weight: var(--font-bold);
+  color: var(--color-primary);
+}

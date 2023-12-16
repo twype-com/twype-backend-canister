@@ -1,0 +1,33 @@
+.main {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.nickName h3 {
+  font-size: var(--font-large);
+  margin: 0;
+  padding: 0;
+}
+
+.nickName p {
+  margin: 0;
+}
+
+.nick {
+  color: var(--color-primary);
+}
+
+.name {
+  font-size: var(--font-big);
+}
+
+.buttons {
+  display: flex;
+  flex-direction: row;
+}
+
+.subscribe {
+  margin-top: auto;
+  background: var(--color-danger);
+}

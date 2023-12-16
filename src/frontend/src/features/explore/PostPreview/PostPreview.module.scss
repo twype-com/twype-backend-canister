@@ -1,0 +1,60 @@
+.post {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  justify-content: stretch;
+}
+
+.media {
+  border-radius: 8px;
+  background: var(--color-background-alt);
+  color: var(--color-text-alt);
+}
+
+.stat {
+  position: absolute;
+  inset: auto var(--space-base) var(--space-base);
+  line-height: 1;
+}
+
+.footer {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  grid-template-areas: "info info" "user likes";
+  align-items: center;
+  gap: var(--space-base);
+  margin: var(--space-tiny) 0 0;
+}
+
+.info {
+  grid-area: info;
+}
+
+.user {
+  grid-area: user;
+}
+
+.likes {
+  grid-area: likes;
+  color: var(--color-text-secondary);
+}
+
+.title {
+  margin: 0;
+  padding: 0;
+}
+
+.tags {
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.tag {
+  display: inline;
+  margin: 0 var(--space-tiny) 0 0;
+}

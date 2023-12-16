@@ -1,0 +1,66 @@
+.participants {
+  position: absolute;
+  inset-block-end: calc(var(--space-small) + 52px);
+  inset-inline-end: var(--space-small);
+  mask-image: linear-gradient(180deg, transparent, #000 70%, #000 100%, transparent 100%);
+
+  @include device(desktop) {
+    inset-block-end: var(--space-small);
+    inset-inline: var(--space-small) calc(var(--meeting-desktop-sidebar) + var(--space-small));
+    mask-image: unset;
+  }
+}
+
+.list {
+  display: flex;
+  flex-direction: column-reverse;
+  gap: var(--space-small);
+  list-style: none;
+  margin: 0;
+  padding: 0;
+
+  @include device(desktop) {
+    flex-direction: row;
+    justify-content: center;
+  }
+}
+
+.item {
+  overflow: hidden;
+  position: relative;
+  width: var(--meeting-participant-size);
+  height: var(--meeting-participant-size);
+  border: 1px solid var(--color-border);
+  border-radius: 8px;
+  background: var(--color-background-alt);
+}
+
+.avatar {
+  position: relative;
+}
+
+.video {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.mic,
+.owner {
+  position: absolute;
+  inset-block-end: var(--space-tiny);
+  font-size: var(--font-size-small);
+  line-height: 1;
+}
+
+.mic {
+  inset-inline-start: var(--space-tiny);
+  color: var(--color-danger);
+}
+
+.owner {
+  inset-inline-end: var(--space-tiny);
+  color: var(--color-warning);
+}

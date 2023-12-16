@@ -1,8 +1,8 @@
 {
   "canisters": {
-    "defi_dapp": {
-      "candid": "src/defi_dapp/defi_dapp.did",
-      "package": "defi_dapp",
+    "twype_token": {
+      "candid": "src/twype_token/twype_token.did",
+      "package": "twype_token",
       "type": "rust",
       "dependencies": ["ledger"]
     },
@@ -22,19 +22,14 @@
       }
     },
     "frontend": {
-      "dependencies": ["defi_dapp"],
-      "source": ["src/frontend_assets"],
+      "dependencies": ["twype_token"],
+      "source": ["src/frontend/dist"],
       "type": "assets"
     },
-    "AkitaDIP20": {
-      "candid": "src/DIP20/rust/token.did",
-      "package": "token",
-      "type": "rust"
-    },
-    "GoldenDIP20": {
-      "candid": "src/DIP20/rust/token.did",
-      "package": "token",
-      "type": "rust"
+    "frontend-svelte": {
+      "dependencies": ["twype_token"],
+      "source": ["src/frontend-svelte-assets"],
+      "type": "assets"
     }
   },
   "networks": {

@@ -1,0 +1,56 @@
+[
+  {
+    "id": "djghwlkjfbalsdkg",
+    "nickName": "JohnDoe",
+    "fullName": "John Doe",
+    "photoUrl": "/images/johndoe.png"
+  },
+  {
+    "id": "sdfhsdfgsfh",
+    "nickName": "JaneDoe",
+    "fullName": "Jane Doe",
+    "photoUrl": "/images/janedoe.png"
+  },
+  {
+    "id": "jsdfvsfhsdfh",
+    "nickName": "GamerDude",
+    "fullName": "Gamer Dude",
+    "photoUrl": "/images/gamerdude.png"
+  },
+  {
+    "id": "vmsdvsdjf",
+    "nickName": "StreamerGirl",
+    "fullName": "Streamer Girl",
+    "photoUrl": "/images/streamergirl.png"
+  },
+  {
+    "id": "sdfhsadfvfsdv",
+    "nickName": "marus",
+    "fullName": "Mark Dorn",
+    "photoUrl": "/images/johndoe.png"
+  },
+  {
+    "id": "chsdfgsdf",
+    "nickName": "lolly",
+    "fullName": "Lola Pola",
+    "photoUrl": "/images/janedoe.png"
+  },
+  {
+    "id": "bfsgjgdvsh",
+    "nickName": "alan555",
+    "fullName": "Alan Po",
+    "photoUrl": "/images/gamerdude.png"
+  },
+  {
+    "id": "sdfhjsdf",
+    "nickName": "oli89",
+    "fullName": "Olivia Smith",
+    "photoUrl": "/images/streamergirl.png"
+  },
+  {
+    "id": "dhnsdfgfd",
+    "nickName": "acrobat92",
+    "fullName": "Sam Poll",
+    "photoUrl": "/images/johndoe.png"
+  }
+]

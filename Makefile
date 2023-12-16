@@ -8,6 +8,11 @@ all: install
 node_modules:
 	pushd src/frontend; npm install; popd
 
+.PHONY: node_modules
+.SILENT: node_modules
+node_modules:
+	pushd src/frontend-svelte; npm install; popd
+
 .PHONY: install
 .SILENT: install
 install: clean
@@ -30,6 +35,11 @@ build:
 frontend: node_modules
 	cd src/frontend && npm run dev
 
+.PHONY: frontend-svelte
+.SILENT: frontend-svelte
+frontend: node_modules
+	cd src/frontend-svelte && npm run dev
+
 .PHONY: test
 .SILENT: test
 test:
@@ -42,6 +52,9 @@ test:
 clean:
 	dfx stop
 	rm -fr .dfx
-	rm -fr src/frontend/node_modules/
 	rm -fr src/frontend/declarations/
-	rm -fr src/frontend/build/
+	rm -fr src/frontend/dist/
+	rm -fr src/frontend-svelte/declarations/
+	rm -fr src/frontend-svelte/dist/
+
+# 44 line -> rm -fr src/frontend/node_modules/

@@ -1,0 +1,15 @@
+$bpDesktop: 1280;
+$bpDesktopPx: $bpDesktop + px;
+$bpTablet: 768;
+$bpTabletPx: $bpTablet + px;
+$bpMobile: 480;
+$bpMobilePx: $bpMobile + px;
+
+:export {
+  bpDesktop: $bpDesktop;
+  bpDesktopPx: $bpDesktopPx;
+  bpTablet: $bpTablet;
+  bpTabletPx: $bpTabletPx;
+  bpMobile: $bpMobile;
+  bpMobilePx: $bpMobilePx;
+}

@@ -1,0 +1,19 @@
+.container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding-block: 100px;
+}
+
+.content {
+  text-align: center;
+}
+
+.title {
+  font-weight: 500;
+}
+
+.wallet {
+  display: flex;
+  justify-content: center;
+}
