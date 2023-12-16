@@ -53,16 +53,17 @@ pub async fn deposit(token_canister_id: Principal) -> DepositReceipt {
 
 #[update(name = "buyRoomToken")]
 #[candid_method(update, rename = "buyRoomToken")]
-pub async fn buy_room_token(room: Nat, amount_in: Nat) -> BuyRoomTokenReceipt {
-    ic_cdk::println!("buy_room_token 1 {amount_in}");
+pub async fn buy_room_token(room: Nat, amount_out: Nat) -> BuyRoomTokenReceipt {
+    ic_cdk::println!("buy_room_token 1 {amount_out}");
 
     let caller = caller();
     let ledger_canister_id = STATE
         .with(|s| s.borrow().ledger)
         .unwrap_or(MAINNET_LEDGER_CANISTER_ID);
-    ic_cdk::println!("buy_room_token 2 {amount_in}");
+    ic_cdk::println!("buy_room_token 2 {amount_out}");
 
-    let amount_out = amount_in.to_owned();
+    let amount_in = get_rt_price(room.to_owned(), amount_out.to_owned());
+    ic_cdk::println!("buy_room_token price = {amount_in}");
 
     STATE.with(|s| {
         let icp_balance: Nat = s.borrow().exchange.get_balance(ledger_canister_id);
@@ -167,6 +168,18 @@ pub fn get_balance(token_canister_id: Principal) -> Nat {
 #[candid_method(query, rename = "getRTBalance")]
 pub fn get_rt_balance(room: Nat) -> Nat {
     STATE.with(|s| s.borrow().exchange.get_rt_balance(room))
+}
+
+#[query(name = "getRTPrice")]
+#[candid_method(query, rename = "getRTPrice")]
+pub fn get_rt_price(room: Nat, amount: Nat) -> Nat {
+    STATE.with(|s| s.borrow().exchange.get_rt_price(room, amount))
+}
+
+#[query(name = "getRTSupply")]
+#[candid_method(query, rename = "getRTSupply")]
+pub fn get_rt_supply(room: Nat) -> Nat {
+    STATE.with(|s| s.borrow().exchange.get_rt_supply(room))
 }
 
 #[query(name = "getBalances")]

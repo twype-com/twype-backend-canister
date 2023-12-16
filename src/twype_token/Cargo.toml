@@ -22,7 +22,8 @@ ic-types = "0.2.1"
 num-bigint = "0.4"
 num-traits = "0.2.14"
 serde_derive = "1.0.126"
-rust_decimal = "1.33.1"
+rust_decimal = { version = "1.33.1", features = ["maths"] }
+rust_decimal_macros = "1.33.1"
 
 [dev-dependencies]
 tempfile = "3.2.0"
