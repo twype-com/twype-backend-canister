@@ -121,6 +121,7 @@
 
       const rt1Balance = await backendActor.getRTBalance(1);
       const rt1Price = await backendActor.getRTPrice(1, 100);
+      const rt1SellPrice = await backendActor.getRTSellPrice(1, 100);
       const rt1Supply = await backendActor.getRTSupply(1);
 
       for (let i = 0; i < $canisters.length; i++) {
@@ -143,6 +144,7 @@
           roomBalance: rt1Balance,
           rt1Price: rt1Price,
           rt1Supply: rt1Supply,
+          rt1SellPrice: rt1SellPrice,
         });
       }
 
@@ -268,85 +270,18 @@
     currentToken = undefined;
   }
 
+  async function SellT() {
+    const result = await backendActor.sellRoomToken(1, 100);
+    if (result.Ok) {
+      console.log("buyRoomToken ok");
+    }
+  }
+
   async function BuyT() {
-    // withdrawing = false;
-    // withdrawAmount = 0;
-    // currentToken = undefined;
-    // // END withdraw
-
-    // depositing = true;
-    // currentToken = principal;
-
-    // const canister = $canisters.find((canister) => {
-    //   return canister.canisterId === principal.toString();
-    // });
-    // if (canister && canister.canisterName === "ICP") {
-    //   if (authType === "Plug") {
-    //     // TODO: Support Plug wallet
-    //     // await ledgerActor.transfer(...)
-    //   }
-    //   // transfer ICP correct subaccount on DEX
-    //   await ledgerActor.transfer({
-    //     memo: BigInt(0x1),
-    //     amount: { e8s: depositAmount },
-    //     fee: { e8s: 10000 },
-    //     to: depositAddressBlob,
-    //     from_subaccount: [],
-    //     created_at_time: [],
-    //   });
-
     const result = await backendActor.buyRoomToken(1, 100);
     if (result.Ok) {
       console.log("buyRoomToken ok");
-      // const dexBalance = await backendActor.getBalance(principal);
-      // let ledgerBalance = 0;
-      // let response;
-      // if (authType === "II") {
-      //   // Update user ICP balance
-      //   response = await ledgerActor.account_balance({
-      //     account: hexToBytes(
-      //       principalToAccountDefaultIdentifier($auth.principal)
-      //     ),
-      //   });
-      // } else if (authType === "Plug") {
-      //   // TODO: Support Plug wallett
-      //   // response = await ledgerActor.account_balance({account: XXX});
-      // }
-      // if (response.e8s) {
-      //   ledgerBalance = response.e8s;
-      // }
-      // setBalances(canister.canisterName, ledgerBalance, dexBalance);
     }
-    // else if (canister && canister.canisterName === "AkitaDIP20") {
-    //   await akitaActor.approve(
-    //     Principal.fromText(process.env.TWYPE_TOKEN_CANISTER_ID),
-    //     depositAmount
-    //   );
-
-    //   const result = await backendActor.deposit(principal);
-    //   if (result.Ok) {
-    //     const dexBalance = await backendActor.getBalance(principal);
-    //     const akitaBalance = await akitaActor.balanceOf($auth.principal);
-
-    //     setBalances(canister.canisterName, akitaBalance, dexBalance);
-    //   }
-    // } else if (canister && canister.canisterName === "GoldenDIP20") {
-    //   await goldenActor.approve(
-    //     Principal.fromText(process.env.TWYPE_TOKEN_CANISTER_ID),
-    //     depositAmount
-    //   );
-
-    //   const result = await backendActor.deposit(principal);
-    //   if (result.Ok) {
-    //     const dexBalance = await backendActor.getBalance(principal);
-    //     const goldenBalance = await goldenActor.balanceOf($auth.principal);
-
-    //     setBalances(canister.canisterName, goldenBalance, dexBalance);
-    //   }
-    // }
-
-    // depositing = false;
-    // currentToken = undefined;
   }
 
   async function withdrawT(principal) {
@@ -476,7 +411,8 @@
           <th></th>
           <th>Twype ICP Balance</th>
           <th>RT1 Balance</th>
-          <th>1k RT1 Price</th>
+          <th>1k RT1 Buy Price</th>
+          <th>1k RT1 Sell Price</th>
           <th>RT1 Supply</th>
         </thead>
         <tbody>
@@ -548,6 +484,9 @@
                   <button title="buy" on:click={() => BuyT()}>
                     <div class="add-btn-text">buy</div>
                   </button>
+                  <button title="sell" on:click={() => SellT()}>
+                    <div class="add-btn-text">sell</div>
+                  </button>
                 </div>
               </td>
               <td>
@@ -563,6 +502,11 @@
               <td>
                 {balance && balance.rt1Price
                   ? balance.rt1Price.toLocaleString()
+                  : "0"}
+              </td>
+              <td>
+                {balance && balance.rt1SellPrice
+                  ? balance.rt1SellPrice.toLocaleString()
                   : "0"}
               </td>
               <td>

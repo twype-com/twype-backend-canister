@@ -26,9 +26,7 @@ pub struct Exchange {
     pub orders: Orders,
 }
 
-const RT_DECIMALS: u32 = 8;
-
-pub fn get_price(supply: Decimal, amount: Decimal) -> Decimal {
+pub fn get_price_decimal(supply: Decimal, amount: Decimal) -> Decimal {
     let sum1 = if supply == Decimal::ZERO {
         Decimal::ZERO
     } else {
@@ -105,6 +103,25 @@ impl RTBalances {
             balances.insert(room, delta);
         }
     }
+
+    pub fn subtract_balance(&mut self, owner: &Principal, room: &Nat, delta: Nat) -> bool {
+        if let Some(balances) = self.0.get_mut(owner) {
+            if let Some(x) = balances.get_mut(&room) {
+                if *x >= delta {
+                    *x -= delta;
+                    // no need to keep an empty token record
+                    if *x == utils::zero() {
+                        balances.remove(room);
+                    }
+                    return true;
+                } else {
+                    return false;
+                }
+            }
+        }
+
+        false
+    }
 }
 
 impl Balances {
@@ -153,16 +170,21 @@ impl Exchange {
     }
 
     pub fn get_rt_price(&self, room: Nat, amount: Nat) -> Nat {
-        let supply = self.get_rt_supply(room.to_owned()).0.to_u128().unwrap();
+        let supply = self.get_rt_supply(room.to_owned());
+        self.get_rt_price_for_supply(room, supply, amount)
+    }
+
+    pub fn get_rt_price_for_supply(&self, room: Nat, supply: Nat, amount: Nat) -> Nat {
         ic_cdk::println!("RT supply {supply}");
         ic_cdk::println!("RT room {room}");
         ic_cdk::println!("RT amount {amount}");
 
-        let price = get_price_u128(supply, amount.0.to_u128().unwrap());
+        let price = get_price_u128(supply.0.to_u128().unwrap(), amount.0.to_u128().unwrap());
         ic_cdk::println!("RT price {price}");
 
         Nat(BigUint::from_u128(price).unwrap())
     }
+
     pub fn get_rt_balance(&self, room: Nat) -> Nat {
         self.rt_balances
             .0
