@@ -75,7 +75,7 @@ export default {
     sourcemap: true,
     format: "iife",
     name: "app",
-    file: "../frontend_assets/build/main.js",
+    file: "../frontend-svelte-assets/build/main.js",
 		inlineDynamicImports: true,
   },
   plugins: [
@@ -128,7 +128,7 @@ export default {
 
     // Watch the `../frontend_assets` directory and refresh the
     // browser on changes when not in production
-    !production && livereload("../frontend_assets"),
+    !production && livereload("../frontend-svelte-assets"),
 
     // If we're building for production (npm run build
     // instead of npm run dev), minify

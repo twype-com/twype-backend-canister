@@ -95,12 +95,55 @@ pub async fn buy_room_token(room: Nat, amount_out: Nat) -> BuyRoomTokenReceipt {
             .rt_supply
             .increase_supply(room, amount_out.to_owned())
     });
+    BuyRoomTokenReceipt::Ok(amount_out)
+}
+
+#[update(name = "sellRoomToken")]
+#[candid_method(update, rename = "sellRoomToken")]
+pub async fn sell_room_token(room: Nat, amount_in: Nat) -> SellRoomTokenReceipt {
+    ic_cdk::println!("sell_room_token 1 {amount_in}");
+
+    let caller = caller();
+    let ledger_canister_id = STATE
+        .with(|s| s.borrow().ledger)
+        .unwrap_or(MAINNET_LEDGER_CANISTER_ID);
+
+    let amount_out = get_rt_sell_price(room.to_owned(), amount_in.to_owned());
+    ic_cdk::println!("sell_room_token price = {amount_out}");
+
     STATE.with(|s| {
-        let new_balance = s.borrow().exchange.get_balance(ledger_canister_id);
-        ic_cdk::println!("RT new_balance 2 {new_balance}");
+        let rt_balance: Nat = s.borrow().exchange.get_rt_balance(room.to_owned());
+        ic_cdk::println!("sell_room_token 3 {rt_balance}");
+
+        assert!(rt_balance >= amount_in);
+        ic_cdk::println!("sell_room_token 4 {amount_in}");
+
+        let s_success = s.borrow_mut().exchange.rt_balances.subtract_balance(
+            &caller,
+            &room,
+            amount_in.to_owned(),
+        );
+
+        assert!(s_success);
+        let new_balance = s.borrow().exchange.get_rt_balance(room.to_owned());
+
+        ic_cdk::println!("RT purchaes {new_balance}");
+        assert!(new_balance + amount_in.to_owned() == rt_balance);
+        ic_cdk::println!("RT purchaes COMPLETE");
+
+        s.borrow_mut().exchange.balances.add_balance(
+            &caller,
+            &ledger_canister_id,
+            amount_out.to_owned(),
+        );
+
+        s.borrow_mut()
+            .exchange
+            .rt_supply
+            .decrease_supply(room, amount_in.to_owned())
     });
 
-    BuyRoomTokenReceipt::Ok(amount_in)
+    SellRoomTokenReceipt::Ok(amount_in)
 }
 
 async fn deposit_icp(caller: Principal) -> Result<Nat, DepositErr> {
@@ -174,6 +217,21 @@ pub fn get_rt_balance(room: Nat) -> Nat {
 #[candid_method(query, rename = "getRTPrice")]
 pub fn get_rt_price(room: Nat, amount: Nat) -> Nat {
     STATE.with(|s| s.borrow().exchange.get_rt_price(room, amount))
+}
+
+#[query(name = "getRTSellPrice")]
+#[candid_method(query, rename = "getRTSellPrice")]
+pub fn get_rt_sell_price(room: Nat, amount: Nat) -> Nat {
+    let supply = STATE.with(|s| s.borrow().exchange.get_rt_supply(room.to_owned()));
+    if supply >= amount {
+        STATE.with(|s| {
+            s.borrow()
+                .exchange
+                .get_rt_price_for_supply(room, supply - amount.to_owned(), amount)
+        })
+    } else {
+        utils::zero()
+    }
 }
 
 #[query(name = "getRTSupply")]

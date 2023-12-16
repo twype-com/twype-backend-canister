@@ -30,6 +30,7 @@ pub enum CancelOrderErr {
 
 pub type DepositReceipt = Result<Nat, DepositErr>;
 pub type BuyRoomTokenReceipt = Result<Nat, DepositErr>;
+pub type SellRoomTokenReceipt = Result<Nat, DepositErr>;
 
 #[derive(CandidType)]
 pub enum DepositErr {

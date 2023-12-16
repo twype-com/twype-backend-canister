@@ -3,6 +3,11 @@ type BuyRoomTokenReceipt =
    Err: WithdrawErr;
    Ok: nat;
  };
+type SellRoomTokenReceipt = 
+ variant {
+   Err: WithdrawErr;
+   Ok: nat;
+ };
 type WithdrawReceipt = 
  variant {
    Err: WithdrawErr;
@@ -41,10 +46,12 @@ type Dex =
    credit: (principal, Token, nat) -> () oneway;
    deposit: (Token) -> (DepositReceipt);
    buyRoomToken: (nat, nat) -> (BuyRoomTokenReceipt);
+   sellRoomToken: (nat, nat) -> (SellRoomTokenReceipt);
    getAllBalances: () -> (vec Balance) query;
    getBalance: (Token) -> (nat) query;
    getRTBalance: (nat) -> (nat) query;
    getRTPrice: (nat,nat) -> (nat) query;
+   getRTSellPrice: (nat,nat) -> (nat) query;
    getRTSupply: (nat) -> (nat) query;
    getBalances: () -> (vec Balance) query;
    getDepositAddress: () -> (blob);
