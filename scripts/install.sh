@@ -50,7 +50,7 @@ II_FETCH_ROOT_KEY=1 dfx deploy internet_identity --no-wallet --argument '(null)'
 
 dfx deploy twype_token --argument "(opt principal \"$LEDGER_ID\")"
 
-dfx generate twype_token
+# dfx generate twype_token
 dfx build twype_token
 # dfx build AkitaDIP20
 # dfx build GoldenDIP20
@@ -58,6 +58,14 @@ dfx generate twype_token
 # dfx generate AkitaDIP20
 # dfx generate GoldenDIP20
 dfx generate ledger
+
+rm ./src/frontend/env/.env
+
+echo "VITE_INTERNET_IDENTITY_CANISTER_ID=$(dfx canister id internet_identity)" >> ./src/frontend/env/.env
+echo "VITE_TWYPE_TOKEN_CANISTER_ID=$(dfx canister id twype_token)" >> ./src/frontend/env/.env
+echo "VITE_LEDGER_CANISTER_ID=$(dfx canister id ledger)" >> ./src/frontend/env/.env
+echo "VITE_DFX_NETWORK=local" >> ./src/frontend/env/.env
+
 
 dfx canister create frontend
 pushd src/frontend
@@ -69,4 +77,17 @@ dfx canister install frontend
 
 echo "===== VISIT DEFI FRONTEND ====="
 echo "http://localhost:8000?canisterId=$(dfx canister id frontend)"
+echo "===== VISIT DEFI FRONTEND ====="
+
+
+dfx canister create frontend-svelte
+pushd src/frontend-svelte
+npm install
+npm run build
+popd
+dfx build frontend-svelte
+dfx canister install frontend-svelte
+
+echo "===== VISIT DEFI FRONTEND ====="
+echo "http://localhost:8000?canisterId=$(dfx canister id frontend-svelte)"
 echo "===== VISIT DEFI FRONTEND ====="

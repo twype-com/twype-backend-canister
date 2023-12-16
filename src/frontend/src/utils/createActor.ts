@@ -33,7 +33,7 @@ export function createActor(identity: Identity) {
   const agent = new HttpAgent({ ...options.agentOptions })
 
   // Fetch root key for certificate validation during development
-  if (process.env.DFX_NETWORK === 'local') {
+  if (import.meta.env.VITE_DFX_NETWORK === 'local') {
     console.log('fetchRootKey')
     agent.fetchRootKey().catch((err) => {
       console.warn('Unable to fetch root key. Check to ensure that your local replica is running')
@@ -44,7 +44,7 @@ export function createActor(identity: Identity) {
   // Creates an actor with using the candid interface and the HttpAgent
   return Actor.createActor(idlFactory, {
     agent,
-    canisterId: 'bd3sg-teaaa-aaaaa-qaaba-cai',
+    canisterId: import.meta.env.VITE_TWYPE_TOKEN_CANISTER_ID,
     ...options?.actorOptions,
   })
 }

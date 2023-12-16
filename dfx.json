@@ -25,6 +25,11 @@
       "dependencies": ["twype_token"],
       "source": ["src/frontend/dist"],
       "type": "assets"
+    },
+    "frontend-svelte": {
+      "dependencies": ["twype_token"],
+      "source": ["src/frontend-svelte-assets"],
+      "type": "assets"
     }
   },
   "networks": {

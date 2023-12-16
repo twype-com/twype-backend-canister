@@ -6,7 +6,12 @@ all: install
 .PHONY: node_modules
 .SILENT: node_modules
 node_modules:
-	pushd src/frontend; vnm use 20; pnpm install; popd
+	pushd src/frontend; npm install; popd
+
+.PHONY: node_modules
+.SILENT: node_modules
+node_modules:
+	pushd src/frontend-svelte; npm install; popd
 
 .PHONY: install
 .SILENT: install
@@ -28,7 +33,12 @@ build:
 .PHONY: frontend
 .SILENT: frontend
 frontend: node_modules
-	cd src/frontend && pnpm run dev
+	cd src/frontend && npm run dev
+
+.PHONY: frontend-svelte
+.SILENT: frontend-svelte
+frontend: node_modules
+	cd src/frontend-svelte && npm run dev
 
 .PHONY: test
 .SILENT: test
@@ -42,6 +52,9 @@ test:
 clean:
 	dfx stop
 	rm -fr .dfx
-	rm -fr src/frontend/node_modules/
 	rm -fr src/frontend/declarations/
 	rm -fr src/frontend/dist/
+	rm -fr src/frontend-svelte/declarations/
+	rm -fr src/frontend-svelte/dist/
+
+# 44 line -> rm -fr src/frontend/node_modules/

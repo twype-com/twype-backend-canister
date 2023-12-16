@@ -6,7 +6,7 @@ import tsconfigPaths from 'vite-tsconfig-paths'
 import { VitePWA } from 'vite-plugin-pwa'
 import mkcert from 'vite-plugin-mkcert'
 import webfontDownload from 'vite-plugin-webfont-dl'
-import { analyzer } from 'vite-bundle-analyzer'
+// import { analyzer } from 'vite-bundle-analyzer'
 
 // https://vitejs.dev/config/
 export default defineConfig({
@@ -20,7 +20,7 @@ export default defineConfig({
       registerType: 'autoUpdate',
     }),
     webfontDownload(['https://fonts.googleapis.com/css2?family=Righteous&display=swap']),
-    analyzer(),
+    // analyzer(),
   ],
   resolve: {
     alias: [
@@ -55,5 +55,5 @@ export default defineConfig({
     port: 5500,
   },
   envDir: 'env',
-  envPrefix: ['VITE_', 'APP_'],
+  envPrefix: ['VITE_'],
 })
