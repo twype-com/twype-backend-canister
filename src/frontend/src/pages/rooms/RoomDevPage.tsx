@@ -6,7 +6,7 @@ import { RoomInfo } from '@/features/rooms/RoomInfo/RoomInfo'
 export const RoomDevPage: FC = () => {
   return (
     <MainLayout>
-      <Article title="Static development room" backUrl="/rooms">
+      <Article title="Static development room" backUrl="/rooms" >
         <RoomInfo />
       </Article>
     </MainLayout>

@@ -81,20 +81,15 @@ export const RoomInfo: FC = () => {
         </Button>
       </div>
 
-      {
-        roomBuyPrice !== null && roomSellPrice !== null ? 
-        <TradingModal
-          isOpen={isDialogOpen}
-          room={activeRoomBuy || activeRoomSell}
-          tradeType={activeRoomSell ? 'sell' : 'buy'}
-          price={activeRoomSell ? roomSellPrice : roomBuyPrice}
-          onSell={handleSell}
-          onBuy={handleBuy}
-          onOpenChange={setIsDialogOpen}
-        />
-        :
-        null
-      }
+      <TradingModal
+        isOpen={isDialogOpen}
+        room={activeRoomBuy || activeRoomSell}
+        tradeType={activeRoomSell ? 'sell' : 'buy'}
+        price={activeRoomSell ? roomSellPrice ?? 0 : roomBuyPrice ?? 0}
+        onSell={handleSell}
+        onBuy={handleBuy}
+        onOpenChange={setIsDialogOpen}
+      />
     </div>
   )
 }

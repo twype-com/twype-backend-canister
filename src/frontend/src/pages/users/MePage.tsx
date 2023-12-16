@@ -3,7 +3,6 @@ import { MainLayout } from '@/features/layout/MainLayout/MainLayout'
 import { Article } from '@/components/Article/Article'
 // import useUserStore from '@/features/user/store'
 import { UserProfile } from '@/features/account/types'
-import { shortenAddress } from '@/utils/common'
 import { ProfileUser } from '@/features/account/ProfileUser/ProfileUser'
 import { useInternetIdentity } from '@/hooks/useInternetIdentity'
 // import { ProfileDetails } from '@/features/account/ProfileDetails/ProfileDetails'
@@ -17,7 +16,7 @@ export const MePage: FC = () => {
   // const isOwner = true
 
   const fakeUser: UserProfile = {
-    nickName: shortenAddress(address),
+    nickName: address,
     links: [{ title: 'Twitter', link: 'https://twitter.com/' }],
     description: 'I love cookies. I hope you all love them as much as I do. Good luck!',
     // photoUrl:

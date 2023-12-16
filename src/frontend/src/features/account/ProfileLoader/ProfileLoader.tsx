@@ -4,7 +4,6 @@ import { Article } from '@/components/Article/Article'
 import { ProfileUser } from '../ProfileUser/ProfileUser'
 import { ProfileDetails } from '../ProfileDetails/ProfileDetails'
 import { UserProfile } from '../types'
-import { shortenAddress } from '@/utils/common'
 import { useInternetIdentity } from '@/hooks/useInternetIdentity'
 
 type ProfileLoaderProps = {}
@@ -13,7 +12,7 @@ export const ProfileLoader: FC<ProfileLoaderProps> = () => {
   const { address } = useInternetIdentity()
 
   const fakeUser: UserProfile = {
-    nickName: shortenAddress(address),
+    nickName: address,
     links: [{ title: 'Twitter', link: 'https://twitter.com/' }],
     description: 'I love cookies. I hope you all love them as much as I do. Good luck!',
     // photoUrl:

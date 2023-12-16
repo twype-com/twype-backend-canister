@@ -9,7 +9,7 @@ import * as twypeTokenDid from '../../../declarations/twype_token/twype_token.di
 import * as ledgerDid from '../../../declarations/ledger/ledger.did.js'
 import { principalToAccountDefaultIdentifier } from '@/utils/principalToAccountDefaultIdentifier'
 import { hexToBytes } from '@/utils/hexToBytes'
-import { useQuery } from '@tanstack/react-query'
+import { useEffectOnce } from 'react-use'
 
 const { idlFactory: twypeTokenIdlFactory } = twypeTokenDid as any
 const { idlFactory: ledgerIdlFactory } = ledgerDid as any
@@ -32,7 +32,8 @@ export const InternetIdentityContext = createContext<{
   withdraw: any
   buy: any
   sell: any
-  address: string
+  address: string,
+  logout: any
 }>({
   client: null,
   login: null,
@@ -45,7 +46,8 @@ export const InternetIdentityContext = createContext<{
   withdraw: null,
   buy: null,
   sell: null,
-  address: ''
+  address: '',
+  logout: null
 })
 
 export const InternetIdentityProvider: FC<PropsWithChildren> = ({ children }) => {
@@ -55,17 +57,20 @@ export const InternetIdentityProvider: FC<PropsWithChildren> = ({ children }) =>
   const [twypeTokenActor, setTwypeTokenActor] = useState<null | any>(null)
   const [ledgerActor, setLedgerActor] = useState<null | any>(null)
   const [balance, setBalance] = useState<null | any>(null)
+  const [client, setClient] = useState<null | AuthClient>(null)
 
   const address = useMemo(() => principal?.toString() ?? "", [principal])
 
   const initAuthClient = useCallback(async () => {
-    return await AuthClient.create();
+    const client = await AuthClient.create();
+
+    setClient(client)
+
+    return client
   }, [])
 
-  const { data: client } = useQuery({
-    queryKey: ['authClient'],
-    queryFn: initAuthClient,
-    initialData: null
+  useEffectOnce(() => {
+    initAuthClient()
   })
   
   const initializeInternetIdentity = useCallback(async () => {
@@ -101,7 +106,9 @@ export const InternetIdentityProvider: FC<PropsWithChildren> = ({ children }) =>
 
   useEffect(() => {
     (async () => {
-      if (await client?.isAuthenticated()) {
+      const isAuth = await client?.isAuthenticated();
+
+      if (client && isAuth) {
         initializeInternetIdentity()
       }
     })()
@@ -111,11 +118,16 @@ export const InternetIdentityProvider: FC<PropsWithChildren> = ({ children }) =>
     if (client) {
       await client.login({
         identityProvider: `http://${import.meta.env.VITE_INTERNET_IDENTITY_CANISTER_ID}.localhost:8000/#authorize`,
+        onSuccess: initAuthClient
       })
-
-      initializeInternetIdentity()
     }
-  }, [client, initializeInternetIdentity])
+  }, [client])
+
+  const logout = useCallback(async () => {
+    if (client) {
+      await client.logout()
+    }
+  }, [client])
 
   const fetchUserBalance = useCallback(async () => {
     if (!twypeTokenActor || !ledgerActor || !principal) return null;
@@ -225,7 +237,7 @@ export const InternetIdentityProvider: FC<PropsWithChildren> = ({ children }) =>
   }, [twypeTokenActor, fetchUserBalance])
 
   return (
-    <InternetIdentityContext.Provider value={{ client, login, principal, actor, twypeTokenActor, ledgerActor, balance, deposit, withdraw, buy, sell, address }}>
+    <InternetIdentityContext.Provider value={{ client, login, principal, actor, twypeTokenActor, ledgerActor, balance, deposit, withdraw, buy, sell, address, logout }}>
       {children}
     </InternetIdentityContext.Provider>
   )

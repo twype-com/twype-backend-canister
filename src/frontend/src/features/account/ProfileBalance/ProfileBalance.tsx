@@ -53,7 +53,7 @@ export const ProfileBalance: FC<ProfileBalanceProps> = ({ className }) => {
   return (
     <div className={cn(styles.balance, className)}>
       <div className={styles.current}>
-        Twype balance: <b>{fromDecimals(Number(balance?.canisterBalance)).toLocaleString()} ICP</b>
+        Twype balance: <b>{balance?.dexBalance ? fromDecimals(Number(balance?.dexBalance)).toLocaleString() : "0.00"} ICP</b>
       </div>
       <div className={styles.actions}>
         <div className={styles.buy}>

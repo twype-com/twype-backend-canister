@@ -47,12 +47,13 @@ export const TradingModal: FC<TradingModalProps> = ({
             value={String(ticketsValue)}
             type="number"
             className={styles.input}
+            min={0}
             onChange={(e) => setTicketsValue(Number(e.target.value))}
           />{' '}
           tickets for {(price * ticketsValue).toFixed(5)} ICP
         </Dialog.Description>
 
-        <Callout.Root color="red">
+        {/* <Callout.Root color="red">
           <Callout.Icon>
             <Info size={32} />
           </Callout.Icon>
@@ -61,7 +62,7 @@ export const TradingModal: FC<TradingModalProps> = ({
               ? 'You can sell tickets only if you are have the tickets'
               : "You can buy tickets and don't cry"}
           </Callout.Text>
-        </Callout.Root>
+        </Callout.Root> */}
 
         <footer className={styles.footer}>
           <Dialog.Close>
