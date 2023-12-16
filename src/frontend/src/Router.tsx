@@ -7,6 +7,7 @@ import {
 } from 'react-router-dom'
 import { HomePage } from '@/pages/HomePage'
 import { RoomDevPage } from '@/pages/rooms/RoomDevPage'
+import { MePage } from './pages/users/MePage'
 // import { RoomsListPage } from "@/pages/rooms/RoomsListPage";
 // import { RoomCreatePage } from "@/pages/rooms/RoomCreatePage";
 
@@ -23,6 +24,10 @@ const router = createBrowserRouter(
         {/* <Route path="create" element={<RoomCreatePage />} /> */}
         {/* <Route path=":roomId" element={<RoomPage />} /> */}
         {/* <Route path=":roomId/join" element={<RoomPageJoin />} /> */}
+      </Route>
+
+      <Route path="users">
+        <Route path=":address" element={<MePage />} />
       </Route>
     </Route>,
   ),
