@@ -5,15 +5,15 @@ import { Article } from '@/components/Article/Article'
 import { UserProfile } from '@/features/account/types'
 import { shortenAddress } from '@/utils/common'
 import { ProfileUser } from '@/features/account/ProfileUser/ProfileUser'
-import { ProfileDetails } from '@/features/account/ProfileDetails/ProfileDetails'
-import { UserRooms } from '@/features/account/UserRooms/UserRooms'
+// import { ProfileDetails } from '@/features/account/ProfileDetails/ProfileDetails'
+// import { UserRooms } from '@/features/account/UserRooms/UserRooms'
 
 export const MePage: FC = () => {
   const address = 'kjasgfvjkahswi37456tyashijkdtyo8q7w'
   // const userAddress = useUserStore((state) => state.walletAddress)
 
   // const isOwner = userAddress === address
-  const isOwner = true
+  // const isOwner = true
 
   const fakeUser: UserProfile = {
     nickName: shortenAddress(address),
@@ -30,8 +30,8 @@ export const MePage: FC = () => {
     <MainLayout>
       <Article title="Profile" backUrl="/">
         <ProfileUser profile={fakeUser} />
-        <ProfileDetails profile={fakeUser} />
-        {isOwner && <UserRooms />}
+        {/* <ProfileDetails profile={fakeUser} /> */}
+        {/* {isOwner && <UserRooms />} */}
       </Article>
     </MainLayout>
   )
