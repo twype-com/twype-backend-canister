@@ -1,6 +1,5 @@
 import { FC, useCallback, useEffect, useState } from 'react'
-import { Button, Callout, Dialog } from '@radix-ui/themes'
-import { Info } from '@phosphor-icons/react'
+import { Button, Dialog } from '@radix-ui/themes'
 import { TradeRoom } from '@/features/account/types'
 import Input from '@/components/Input/Input'
 import styles from './TradingModal.module.scss'
