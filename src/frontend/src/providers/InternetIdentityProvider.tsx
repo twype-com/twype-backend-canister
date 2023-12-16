@@ -9,16 +9,16 @@ import * as twypeTokenDid from '../../../declarations/twype_token/twype_token.di
 import * as ledgerDid from '../../../declarations/ledger/ledger.did.js'
 import { principalToAccountDefaultIdentifier } from '@/utils/principalToAccountDefaultIdentifier'
 import { hexToBytes } from '@/utils/hexToBytes'
-import { useMutation, useQuery } from '@tanstack/react-query'
+import { useQuery } from '@tanstack/react-query'
 
 const { idlFactory: twypeTokenIdlFactory } = twypeTokenDid as any
 const { idlFactory: ledgerIdlFactory } = ledgerDid as any
 
-const canisters = [{
+const canister = {
   symbol: "ICP",
   canisterName: "ICP",
   canisterId: import.meta.env.VITE_LEDGER_CANISTER_ID
-}]
+}
 
 export const InternetIdentityContext = createContext<{
   client: null | AuthClient
@@ -27,7 +27,8 @@ export const InternetIdentityContext = createContext<{
   actor: any
   twypeTokenActor: any
   ledgerActor: any
-  balances: any
+  balance: any
+  deposit: any
 }>({
   client: null,
   login: null,
@@ -35,14 +36,17 @@ export const InternetIdentityContext = createContext<{
   actor: null,
   twypeTokenActor: null,
   ledgerActor: null,
-  balances: null,
+  balance: null,
+  deposit: null,
 })
 
 export const InternetIdentityProvider: FC<PropsWithChildren> = ({ children }) => {
   const [principal, setPrincipal] = useState<null | Principal>(null)
+  const [address, setAddress] = useState<null | string>(null)
   const [actor, setActor] = useState<null | any>(null)
   const [twypeTokenActor, setTwypeTokenActor] = useState<null | any>(null)
   const [ledgerActor, setLedgerActor] = useState<null | any>(null)
+  const [balance, setBalance] = useState<null | any>(null)
 
   const initAuthClient = useCallback(async () => {
     return await AuthClient.create();
@@ -53,12 +57,7 @@ export const InternetIdentityProvider: FC<PropsWithChildren> = ({ children }) =>
     queryFn: initAuthClient,
     initialData: null
   })
-
-  // const queryClient = useQueryClient()
-  // queryClient.invalidateQueries({
-  //   queryKey: ['authClient']
-  // })
-
+  
   const initializeInternetIdentity = useCallback(async () => {
     if (!client) return;
 
@@ -76,6 +75,10 @@ export const InternetIdentityProvider: FC<PropsWithChildren> = ({ children }) =>
     if (import.meta.env.VITE_DFX_NETWORK === "local") agent.fetchRootKey();
 
     const twypeTokenActor = createCanisterActor(agent, twypeTokenIdlFactory, import.meta.env.VITE_TWYPE_TOKEN_CANISTER_ID)
+
+    const address = await twypeTokenActor.getDepositAddress();
+
+    setAddress(address as string)
 
     const ledgerActor = createCanisterActor(agent, ledgerIdlFactory, import.meta.env.VITE_LEDGER_CANISTER_ID)
 
@@ -102,10 +105,8 @@ export const InternetIdentityProvider: FC<PropsWithChildren> = ({ children }) =>
     }
   }, [client, initializeInternetIdentity])
 
-  const fetchUserBalances = useCallback(async () => {
-    if (!twypeTokenActor || !ledgerActor || !principal) return
-    // Create a balances array and set the userBalance store object
-    const balances = [];
+  const fetchUserBalance = useCallback(async () => {
+    if (!twypeTokenActor || !ledgerActor || !principal) return null;
 
     const allUserBalances = await twypeTokenActor.getBalances();
 
@@ -121,37 +122,58 @@ export const InternetIdentityProvider: FC<PropsWithChildren> = ({ children }) =>
       ledgerBalance = approved.e8s;
     }
 
-    for (let i = 0; i < canisters.length; i++) {
-      const principal = Principal.fromText(canisters[i].canisterId);
-      let token;
-      if (allUserBalances.length) {
-        token = allUserBalances.find((bal: any) => {
-          return bal.token.toString() === principal.toString();
-        });
-      }
+    const canisterPrincipal = Principal.fromText(canister.canisterId);
+    let token;
 
-      const dexBalance = token ? token.amount : 0;
-
-      balances.push({
-        name: canisters[i].canisterName,
-        symbol: canisters[i].symbol,
-        canisterBalance: ledgerBalance,
-        dexBalance: dexBalance,
-        principal: principal,
-        roomBalance: rt1Balance,
+    if (allUserBalances.length) {
+      token = allUserBalances.find((bal: any) => {
+        return bal.token.toString() === canisterPrincipal.toString();
       });
     }
 
-    return balances
+    const dexBalance = token ? token.amount : 0;
+
+    setBalance({
+      name: canister.canisterName,
+      symbol: canister.symbol,
+      canisterBalance: ledgerBalance,
+      dexBalance: dexBalance,
+      canisterPrincipal: canisterPrincipal,
+      roomBalance: rt1Balance,
+    })
   }, [twypeTokenActor, ledgerActor, principal])
 
-  const { data: balances } = useQuery({
-    queryKey: ['balances'],
-    queryFn: twypeTokenActor && ledgerActor && principal && fetchUserBalances,
-  })
+  useEffect(() => {
+    fetchUserBalance()
+  }, [fetchUserBalance])
+
+  console.log(balance)
+
+  const deposit = useCallback(async (amount: number) => {
+    if (!ledgerActor || !balance || !address || !twypeTokenActor) return
+
+    // transfer ICP correct subaccount on DEX
+    await ledgerActor.transfer({
+      memo: BigInt(0x1),
+      amount: { e8s: amount },
+      fee: { e8s: 10000 },
+      to: address,
+      from_subaccount: [],
+      created_at_time: [],
+    });
+
+    const response = await twypeTokenActor.deposit(balance?.canisterPrincipal);
+
+    // queryClient.invalidateQueries({
+    //   queryKey: ['balance']
+    // })
+    await fetchUserBalance()
+
+    return response;
+  }, [ledgerActor, address, twypeTokenActor, balance, fetchUserBalance])
 
   return (
-    <InternetIdentityContext.Provider value={{ client, login, principal, actor, twypeTokenActor, ledgerActor, balances }}>
+    <InternetIdentityContext.Provider value={{ client, login, principal, actor, twypeTokenActor, ledgerActor, balance, deposit }}>
       {children}
     </InternetIdentityContext.Provider>
   )

@@ -210,6 +210,8 @@
         created_at_time: [],
       });
 
+      console.log(principal);
+
       const result = await backendActor.deposit(principal);
       if (result.Ok) {
         const dexBalance = await backendActor.getBalance(principal);

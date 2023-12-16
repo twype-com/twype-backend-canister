@@ -3,6 +3,7 @@ import cn from 'classnames'
 import { Button } from '@radix-ui/themes'
 import { BalanceModal } from '@/features/trading/BalanceModal/BalanceModal'
 import styles from './ProfileBalance.module.scss'
+import { useInternetIdentity } from '@/hooks/useInternetIdentity'
 
 type ProfileBalanceProps = {
   className?: string
@@ -11,6 +12,7 @@ type ProfileBalanceProps = {
 export const ProfileBalance: FC<ProfileBalanceProps> = ({ className }) => {
   const [isDialogOpen, setIsDialogOpen] = useState(false)
   const [tradingType, setTradingType] = useState<'sell' | 'buy' | null>(null)
+  const { balance, deposit } = useInternetIdentity()
 
   useEffect(() => {
     if (!isDialogOpen) {
@@ -36,12 +38,16 @@ export const ProfileBalance: FC<ProfileBalanceProps> = ({ className }) => {
   const handleBuy = useCallback((num: number) => {
     console.log('🚀 ~ handleBuy ~ num:', num)
     setIsDialogOpen(false)
-  }, [])
+
+    if (deposit) {
+      deposit(num)
+    }
+  }, [deposit])
 
   return (
     <div className={cn(styles.balance, className)}>
       <div className={styles.current}>
-        Twype balance: <b>45 ICP</b>
+        Twype balance: <b>{balance?.canisterBalance.toLocaleString()} ICP</b>
       </div>
       <div className={styles.actions}>
         <div className={styles.buy}>
