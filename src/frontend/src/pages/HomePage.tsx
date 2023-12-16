@@ -4,7 +4,7 @@ import { Feed } from '@/features/explore/Feed/Feed'
 import { PostPreview } from '@/features/explore/PostPreview/PostPreview'
 
 export const HomePage: FC = () => {
-  const fakeContent = Array.from({ length: 9 }, (_, i) => i + 1)
+  const fakeContent = Array.from({ length: 6 }, (_, i) => i + 1)
 
   return (
     <MainLayout>
