@@ -3,15 +3,16 @@ import { Link } from 'react-router-dom'
 import { Button } from '@radix-ui/themes'
 import * as DropdownMenu from '@radix-ui/react-dropdown-menu'
 import useUserStore from '@/features/user/store'
-import { TMP_WALLET_ADDRESS } from '@/features/user/constants'
 import { Avatar } from '@/components/Avatar/Avatar'
 import { UserMenuItem } from '../types'
 import styles from './HeaderUser.module.scss'
+import { useInternetIdentity } from '@/hooks/useInternetIdentity'
 
 export const HeaderUser: FC = () => {
   const address = useUserStore((state) => state.walletAddress)
-  const login = useUserStore((state) => state.updateWalletAddress)
+  // const login = useUserStore((state) => state.updateWalletAddress)
   const logout = useUserStore((state) => state.logout)
+  const { login, principal } = useInternetIdentity()
 
   const menu: UserMenuItem[] = [
     {
@@ -29,9 +30,9 @@ export const HeaderUser: FC = () => {
     // },
   ]
 
-  if (!address) {
+  if (!principal) {
     return (
-      <Button onClick={() => login(TMP_WALLET_ADDRESS)} variant="outline">
+      <Button onClick={() => login && login()} variant="outline">
         Connect wallet
       </Button>
     )
@@ -41,7 +42,7 @@ export const HeaderUser: FC = () => {
     <DropdownMenu.Root>
       <DropdownMenu.Trigger asChild>
         <div className={styles.avatar}>
-          <Avatar address={address} />
+          <Avatar address={principal.toString()} />
         </div>
       </DropdownMenu.Trigger>
 

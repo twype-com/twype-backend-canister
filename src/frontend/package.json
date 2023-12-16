@@ -35,6 +35,7 @@
     "react-dom": "^18.2.0",
     "react-hook-form": "^7.49.2",
     "react-nice-avatar": "^1.5.0",
+    "react-router": "^6.21.0",
     "react-router-dom": "^6.21.0",
     "react-use": "^17.4.2",
     "semver": "^7.5.4",

@@ -68,4 +68,6 @@ export default defineConfig({
     strictPort: true,
     port: 5500,
   },
+  envDir: 'env',
+  envPrefix: ['VITE_', 'APP_'],
 })

@@ -1,4 +1,4 @@
-@import '@/styles/_mixins.module';
+@import '@/styles/_mixins';
 
 .avatar {
   --avatar-size: var(--cmp-avatar-size, var(--space-large));
