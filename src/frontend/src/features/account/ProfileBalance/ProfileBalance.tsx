@@ -4,6 +4,8 @@ import { Button } from '@radix-ui/themes'
 import { BalanceModal } from '@/features/trading/BalanceModal/BalanceModal'
 import styles from './ProfileBalance.module.scss'
 import { useInternetIdentity } from '@/hooks/useInternetIdentity'
+import { fromDecimals } from '@/utils/fromDecimals'
+import { toDecimals } from '@/utils/toDecimals'
 
 type ProfileBalanceProps = {
   className?: string
@@ -35,7 +37,7 @@ export const ProfileBalance: FC<ProfileBalanceProps> = ({ className }) => {
     setIsDialogOpen(false)
 
     if (withdraw) {
-      withdraw(num)
+      withdraw(toDecimals(num))
     }
   }, [withdraw])
 
@@ -44,14 +46,14 @@ export const ProfileBalance: FC<ProfileBalanceProps> = ({ className }) => {
     setIsDialogOpen(false)
 
     if (deposit) {
-      deposit(num)
+      deposit(toDecimals(num))
     }
   }, [deposit])
 
   return (
     <div className={cn(styles.balance, className)}>
       <div className={styles.current}>
-        Twype balance: <b>{balance?.canisterBalance.toLocaleString()} ICP</b>
+        Twype balance: <b>{fromDecimals(Number(balance?.canisterBalance)).toLocaleString()} ICP</b>
       </div>
       <div className={styles.actions}>
         <div className={styles.buy}>

@@ -5,11 +5,12 @@ import { Article } from '@/components/Article/Article'
 import { UserProfile } from '@/features/account/types'
 import { shortenAddress } from '@/utils/common'
 import { ProfileUser } from '@/features/account/ProfileUser/ProfileUser'
+import { useInternetIdentity } from '@/hooks/useInternetIdentity'
 // import { ProfileDetails } from '@/features/account/ProfileDetails/ProfileDetails'
 // import { UserRooms } from '@/features/account/UserRooms/UserRooms'
 
 export const MePage: FC = () => {
-  const address = 'kjasgfvjkahswi37456tyashijkdtyo8q7w'
+  const { address } = useInternetIdentity()
   // const userAddress = useUserStore((state) => state.walletAddress)
 
   // const isOwner = userAddress === address
@@ -24,6 +25,7 @@ export const MePage: FC = () => {
     subscribers: 5409,
     subscriptions: 23,
     isOnline: true,
+    address
   }
 
   return (

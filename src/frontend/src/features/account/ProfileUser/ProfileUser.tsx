@@ -15,7 +15,7 @@ export const ProfileUser: FC<ProfileUserProps> = ({ className, profile }) => {
   return (
     <section className={cn(styles.profile, className)}>
       <Avatar
-        address={'demo-address'}
+        address={profile.address}
         photoUrl={profile.photoUrl}
         userName={profile.nickName}
         className={styles.avatar}

@@ -1,9 +1,19 @@
 import { TradeRoom } from '@/features/account/types'
 import { TradingModal } from '@/features/trading/TradingModal/TradingModal'
+import { useInternetIdentity } from '@/hooks/useInternetIdentity'
+import { fromDecimals } from '@/utils/fromDecimals'
 import { Button } from '@radix-ui/themes'
-import { FC, useCallback, useEffect, useState } from 'react'
+import { FC, useCallback, useEffect, useMemo, useState } from 'react'
 
 export const RoomInfo: FC = () => {
+  const { balance, buy, sell } = useInternetIdentity()
+
+  const roomBuyPrice = useMemo(() => balance?.roomTokenBuyPrice ? fromDecimals(Number(balance?.roomTokenBuyPrice)) : null, [balance?.roomTokenBuyPrice])
+
+  const roomSellPrice = useMemo(() => balance?.roomTokenSellPrice ? fromDecimals(Number(balance?.roomTokenSellPrice)) : null, [balance?.roomTokenSellPrice])
+  
+  const roomBalance = useMemo(() => balance?.roomBalance ? balance.roomBalance.toLocaleString() : null, [balance?.roomBalance])
+
   const room = {
     id: '1',
     name: 'Room name',
@@ -38,20 +48,28 @@ export const RoomInfo: FC = () => {
   const handleSell = useCallback((num: number) => {
     console.log('🚀 ~ handleSell ~ num:', num)
     setIsDialogOpen(false)
-  }, [])
+
+    if (sell) {
+      sell(num)
+    }
+  }, [sell])
 
   const handleBuy = useCallback((num: number) => {
     console.log('🚀 ~ handleBuy ~ num:', num)
     setIsDialogOpen(false)
-  }, [])
+
+    if (buy) {
+      buy(num)
+    }
+  }, [buy])
 
   return (
     <div>
       <p>
         <i>The place for nice description and actions</i>
       </p>
-      <p>Current ticket price: {room.price}</p>
-      <p>493 users in the room</p>
+      <p>Current ticket price: {roomBuyPrice ? `${roomBuyPrice?.toLocaleString()} ICP` : null}</p>
+      <p>You have: {roomBalance} tickets</p>
 
       <div>
         <Button color="pink" radius="full" size="2" onClick={() => startSell(room)}>
@@ -63,15 +81,20 @@ export const RoomInfo: FC = () => {
         </Button>
       </div>
 
-      <TradingModal
-        isOpen={isDialogOpen}
-        room={activeRoomBuy || activeRoomSell}
-        tradeType={activeRoomSell ? 'sell' : 'buy'}
-        price={room.price}
-        onSell={handleSell}
-        onBuy={handleBuy}
-        onOpenChange={setIsDialogOpen}
-      />
+      {
+        roomBuyPrice !== null && roomSellPrice !== null ? 
+        <TradingModal
+          isOpen={isDialogOpen}
+          room={activeRoomBuy || activeRoomSell}
+          tradeType={activeRoomSell ? 'sell' : 'buy'}
+          price={activeRoomSell ? roomSellPrice : roomBuyPrice}
+          onSell={handleSell}
+          onBuy={handleBuy}
+          onOpenChange={setIsDialogOpen}
+        />
+        :
+        null
+      }
     </div>
   )
 }

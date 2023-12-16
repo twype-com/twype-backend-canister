@@ -49,7 +49,7 @@ export const TradingModal: FC<TradingModalProps> = ({
             className={styles.input}
             onChange={(e) => setTicketsValue(Number(e.target.value))}
           />{' '}
-          tickets for {price} ICP
+          tickets for {(price * ticketsValue).toFixed(5)} ICP
         </Dialog.Description>
 
         <Callout.Root color="red">

@@ -12,6 +12,7 @@ export type UserProfile = {
   subscribers: number
   subscriptions: number
   isOnline: boolean
+  address: string
 }
 
 export type TradeRoom = {

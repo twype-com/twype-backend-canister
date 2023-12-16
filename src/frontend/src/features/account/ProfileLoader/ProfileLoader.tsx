@@ -1,20 +1,16 @@
+/* eslint-disable @typescript-eslint/ban-types */
 import { FC } from 'react'
-import useUserStore from '@/features/user/store'
 import { Article } from '@/components/Article/Article'
 import { ProfileUser } from '../ProfileUser/ProfileUser'
 import { ProfileDetails } from '../ProfileDetails/ProfileDetails'
-import { UserRooms } from '../UserRooms/UserRooms'
 import { UserProfile } from '../types'
 import { shortenAddress } from '@/utils/common'
+import { useInternetIdentity } from '@/hooks/useInternetIdentity'
 
-type ProfileLoaderProps = {
-  address: string
-}
+type ProfileLoaderProps = {}
 
-export const ProfileLoader: FC<ProfileLoaderProps> = ({ address }) => {
-  const userAddress = useUserStore((state) => state.walletAddress)
-
-  const isOwner = userAddress === address
+export const ProfileLoader: FC<ProfileLoaderProps> = () => {
+  const { address } = useInternetIdentity()
 
   const fakeUser: UserProfile = {
     nickName: shortenAddress(address),
@@ -25,13 +21,14 @@ export const ProfileLoader: FC<ProfileLoaderProps> = ({ address }) => {
     subscribers: 5409,
     subscriptions: 23,
     isOnline: true,
+    address
   }
 
   return (
     <Article title="Profile" backUrl="/">
       <ProfileUser profile={fakeUser} />
       <ProfileDetails profile={fakeUser} />
-      {isOwner && <UserRooms />}
+      {/* {isOwner && <UserRooms />} */}
     </Article>
   )
 }
