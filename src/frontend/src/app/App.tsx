@@ -1,8 +1,6 @@
-import { MainLayout } from "@/features/layout/MainLayout/MainLayout"
-import { Providers } from "@/providers"
-import { FC } from "react"
-import { BrowserRouter } from "react-router-dom"
-import { Routes, Route } from 'react-router'
+import { FC } from 'react'
+import { Providers } from '@/providers'
+import { Router } from '@/Router'
 import { ScrollArea, Theme } from '@radix-ui/themes'
 
 export const App: FC = () => {
@@ -13,12 +11,7 @@ export const App: FC = () => {
     <Providers>
       <Theme>
         <ScrollArea type="always" scrollbars="vertical" style={{ height: '100vh' }}>
-          <BrowserRouter>
-            <MainLayout />
-            <Routes>
-              <Route />
-            </Routes>
-          </BrowserRouter>
+          <Router />
         </ScrollArea>
       </Theme>
     </Providers>
