@@ -28,11 +28,13 @@ export const ProfileBalance: FC<ProfileBalanceProps> = ({ className }) => {
     setTradingType('buy')
   }, [])
 
-  const handleSell = useCallback(() => {
+  const handleSell = useCallback((num: number) => {
+    console.log('🚀 ~ handleSell ~ num:', num)
     setIsDialogOpen(false)
   }, [])
 
-  const handleBuy = useCallback(() => {
+  const handleBuy = useCallback((num: number) => {
+    console.log('🚀 ~ handleBuy ~ num:', num)
     setIsDialogOpen(false)
   }, [])
 
