@@ -2,7 +2,7 @@ import { FC } from 'react'
 import cn from 'classnames'
 import { Avatar } from '@/components/Avatar/Avatar'
 import { ProfileUserMain } from '../ProfileUserMain/ProfileUserMain'
-import { ProfileUserActions } from '../ProfileUserActions/ProfileUserActions'
+// import { ProfileUserActions } from '../ProfileUserActions/ProfileUserActions'
 import { UserProfile } from '../types'
 import styles from './ProfileUser.module.scss'
 
@@ -21,7 +21,7 @@ export const ProfileUser: FC<ProfileUserProps> = ({ className, profile }) => {
         className={styles.avatar}
       />
       <ProfileUserMain profile={profile} />
-      <ProfileUserActions />
+      {/* <ProfileUserActions /> */}
     </section>
   )
 }
