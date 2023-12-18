@@ -1,4 +1,3 @@
-'use client'
 import { FC } from 'react'
 import { Article } from '@/components/Article/Article'
 import { SettingsForm } from '../SettingsForm/SettingsForm'

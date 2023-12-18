@@ -1,7 +1,8 @@
 import { FC, useEffect } from 'react'
 import { Providers } from '@/providers'
-import { Router } from '@/Router'
+import AppRouter from '@/Router'
 import { ScrollArea, Theme } from '@radix-ui/themes'
+import { Outlet } from 'react-router'
 
 export const App: FC = () => {
   console.log('🚀 ~ import.meta.env:', import.meta.env)
@@ -26,7 +27,8 @@ export const App: FC = () => {
     <Providers>
       <Theme>
         <ScrollArea type="always" scrollbars="vertical" style={{ height: '100vh' }}>
-          <Router />
+          <AppRouter />
+          <Outlet />
         </ScrollArea>
       </Theme>
     </Providers>

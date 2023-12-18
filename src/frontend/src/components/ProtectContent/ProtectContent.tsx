@@ -1,4 +1,3 @@
-'use client'
 import { FC, PropsWithChildren } from 'react'
 import { Button } from '@radix-ui/themes'
 import useUserStore from '@/features/user/store'

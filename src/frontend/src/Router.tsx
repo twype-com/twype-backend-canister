@@ -1,38 +1,23 @@
-import { FC } from 'react'
-import {
-  Route,
-  createBrowserRouter,
-  createRoutesFromElements,
-  RouterProvider,
-} from 'react-router-dom'
+import { Fragment } from 'react'
+import { RouteObject, useRoutes } from 'react-router-dom'
 import { HomePage } from '@/pages/HomePage'
 import { RoomDevPage } from '@/pages/rooms/RoomDevPage'
 import { MePage } from './pages/users/MePage'
 // import { RoomsListPage } from "@/pages/rooms/RoomsListPage";
 // import { RoomCreatePage } from "@/pages/rooms/RoomCreatePage";
 
-const router = createBrowserRouter(
-  createRoutesFromElements(
-    <Route path="/">
-      <Route index element={<HomePage />} />
-      {/* <Route path="catalog" element={<CatalogPage />} /> */}
+const routes: RouteObject[] = [
+  {
+    path: '/',
+    element: <HomePage />,
+    index: true,
+  },
+  { path: '/rooms', children: [{ path: 'dev', element: <RoomDevPage /> }] },
+  { path: '/users', children: [{ path: ':address', element: <MePage /> }] },
+]
 
-      <Route path="rooms">
-        <Route path="dev" element={<RoomDevPage />} />
-        {/* <Route index element={<RoomsListPage />} /> */}
-        {/* <Route path="create" element={<RoomCreatePage />} /> */}
-        {/* <Route path="create" element={<RoomCreatePage />} /> */}
-        {/* <Route path=":roomId" element={<RoomPage />} /> */}
-        {/* <Route path=":roomId/join" element={<RoomPageJoin />} /> */}
-      </Route>
-
-      <Route path="users">
-        <Route path=":address" element={<MePage />} />
-      </Route>
-    </Route>,
-  ),
-)
-
-export const Router: FC = () => {
-  return <RouterProvider router={router} />
+export default function AppRouter() {
+  const elements = useRoutes(routes)
+  window.scroll(0, 0)
+  return <Fragment>{elements}</Fragment>
 }

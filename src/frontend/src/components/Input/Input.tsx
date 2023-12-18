@@ -1,4 +1,3 @@
-'use client'
 import { FC, InputHTMLAttributes, forwardRef, useEffect, useRef } from 'react'
 import cn from 'classnames'
 import styles from './Input.module.scss'

@@ -1,4 +1,3 @@
-'use client'
 import { FC, PropsWithChildren, ReactNode } from 'react'
 import cn from 'classnames'
 import { Link } from 'react-router-dom'
@@ -46,7 +45,7 @@ export const Article: FC<PropsWithChildren<ArticleProps>> = ({
 
           <div className={styles.text}>
             {title && <h1 className={styles.title}>{title}</h1>}
-            {description && <p className={styles.description}>{description}</p>}
+            {description && <div className={styles.description}>{description}</div>}
           </div>
 
           {buttonText && (

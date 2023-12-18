@@ -13,7 +13,7 @@ export const Header: FC<HeaderProps> = ({ className }) => {
     <header className={cn(styles.header, className)}>
       <div className={styles.container}>
         <Logo className={styles.logo} />
-        <div className={styles.search}>search</div>
+        {/* <div className={styles.search}>search</div> */}
         <div className={styles.actions}>
           <HeaderActions />
         </div>

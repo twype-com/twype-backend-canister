@@ -81,9 +81,9 @@ export const RoomInfo: FC = () => {
 
   return (
     <div>
-      <p>
+      <div>
         <PostMedia cover="/images/room.jpg" />
-      </p>
+      </div>
       <p>Current ticket price: {roomBuyPrice ? `${roomBuyPrice?.toLocaleString()} ICP` : null}</p>
       <p>You have: {roomBalance} tickets</p>
 

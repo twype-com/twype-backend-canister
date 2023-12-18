@@ -1,4 +1,3 @@
-'use client'
 import { FC } from 'react'
 import cn from 'classnames'
 import * as Form from '@radix-ui/react-form'
