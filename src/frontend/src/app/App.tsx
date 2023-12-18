@@ -1,11 +1,26 @@
-import { FC } from 'react'
+import { FC, useEffect } from 'react'
 import { Providers } from '@/providers'
 import { Router } from '@/Router'
 import { ScrollArea, Theme } from '@radix-ui/themes'
 
 export const App: FC = () => {
-  console.log('🚀 ~ process.env:', import.meta.env)
-  console.log('🚀 ~ process.env.DFX_NETWORK:', import.meta.env.DFX_NETWORK)
+  console.log('🚀 ~ import.meta.env:', import.meta.env)
+  console.log('🚀 ~ DFX_NETWORK:', import.meta.env.DFX_NETWORK)
+  console.log('🚀 ~ VITE_DFX_CANISTER_ID:', import.meta.env.VITE_DFX_CANISTER_ID)
+
+  const queryString = window.location.search
+  const urlParams = new URLSearchParams(queryString)
+  const canisterId = urlParams.get('canisterId')
+  console.log(canisterId)
+
+  useEffect(() => {
+    if (import.meta.env.VITE_DFX_NETWORK === 'local') {
+      const localCanisterId = localStorage.getItem('canisterId')
+      if (!localCanisterId && !!canisterId && localCanisterId !== 'undefined') {
+        localStorage.setItem('canisterId', import.meta.env.VITE_DFX_CANISTER_ID || canisterId)
+      }
+    }
+  }, [canisterId])
 
   return (
     <Providers>

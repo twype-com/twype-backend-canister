@@ -4,6 +4,7 @@ import cn from 'classnames'
 import { Badge } from '@radix-ui/themes'
 import { Link as LinksIcon } from '@phosphor-icons/react'
 import { UserProfile } from '@/features/account/types'
+import { canLink } from '@/utils/canLink'
 import styles from './ProfileDetails.module.scss'
 
 type ProfileDetailsProps = {
@@ -37,7 +38,7 @@ export const ProfileDetails: FC<ProfileDetailsProps> = ({ className, profile }) 
           <LinksIcon size={24} color="black" />
           {profile.links?.map((oneLink, id) => {
             return (
-              <Link key={id} to={oneLink.link} className={styles.link}>
+              <Link key={id} to={canLink(oneLink.link)} className={styles.link}>
                 {oneLink.title}
               </Link>
             )

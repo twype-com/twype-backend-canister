@@ -5,6 +5,7 @@ import { Link } from 'react-router-dom'
 import { Button } from '@radix-ui/themes'
 import { ArrowCircleLeft } from '@phosphor-icons/react'
 import { ProtectContent } from '../ProtectContent/ProtectContent'
+import { canLink } from '@/utils/canLink'
 import styles from './Article.module.scss'
 
 type ArticleProps = {
@@ -38,7 +39,7 @@ export const Article: FC<PropsWithChildren<ArticleProps>> = ({
       {(title || (buttonText && onClick)) && (
         <header className={styles.header}>
           {backUrl && (
-            <Link to={backUrl} className={styles.back}>
+            <Link to={canLink(backUrl)} className={styles.back}>
               <ArrowCircleLeft />
             </Link>
           )}
@@ -51,7 +52,7 @@ export const Article: FC<PropsWithChildren<ArticleProps>> = ({
           {buttonText && (
             <div className={styles.actions}>
               {buttonUrl && !onClick && (
-                <Link to={buttonUrl} className={styles.action}>
+                <Link to={canLink(buttonUrl)} className={styles.action}>
                   <Button>{buttonText}</Button>
                 </Link>
               )}

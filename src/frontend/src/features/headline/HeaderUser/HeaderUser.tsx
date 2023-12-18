@@ -4,8 +4,9 @@ import { Button } from '@radix-ui/themes'
 import * as DropdownMenu from '@radix-ui/react-dropdown-menu'
 import { Avatar } from '@/components/Avatar/Avatar'
 import { UserMenuItem } from '../types'
-import styles from './HeaderUser.module.scss'
 import { useInternetIdentity } from '@/hooks/useInternetIdentity'
+import { canLink } from '@/utils/canLink'
+import styles from './HeaderUser.module.scss'
 
 export const HeaderUser: FC = () => {
   // const address = useUserStore((state) => state.walletAddress)
@@ -50,7 +51,7 @@ export const HeaderUser: FC = () => {
           {menu.map((item) => (
             <DropdownMenu.Item className={styles.DropdownMenuItem} key={item.slug}>
               {item.href ? (
-                <Link to={item.href} className={styles.link}>
+                <Link to={canLink(item.href)} className={styles.link}>
                   {item.text}
                   {item.rightSlot && <span className={styles.RightSlot}>{item.rightSlot}</span>}
                 </Link>
