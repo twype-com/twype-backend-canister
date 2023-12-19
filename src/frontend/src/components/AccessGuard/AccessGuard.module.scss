@@ -1,0 +1,56 @@
+.guard {
+  --access-guard-background-color: var(--ui-access-guard-background-color, var(--color-background));
+  --access-guard-text-color: var(--ui-access-guard-text-color, var(--color-text-primary));
+
+  display: flex;
+  flex: 1;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+}
+
+.filled {
+  background: var(--access-guard-background-color);
+}
+
+.content {
+  padding: var(--space-base);
+  color: var(--access-guard-text-color);
+  text-align: center;
+}
+
+.title {
+  margin: 0;
+}
+
+.text {
+  max-width: 680px;
+  margin: var(--space-base) auto;
+}
+
+.children,
+.footer {
+  margin-block-start: var(--space-base);
+}
+
+.footer {
+  --ui-button-width: 240px;
+
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-base);
+  align-items: center;
+  justify-content: center;
+}
+
+.decor {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  max-width: 380px;
+  margin: var(--space-base) auto 0;
+
+  img {
+    max-width: 100%;
+  }
+}

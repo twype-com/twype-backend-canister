@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { Identity, Actor, HttpAgent } from '@dfinity/agent'
+import { Actor, HttpAgent, Identity } from '@dfinity/agent'
 import * as twypeTokenDid from '../../../declarations/twype_token/twype_token.did.js'
 
 const { idlFactory } = twypeTokenDid as any
@@ -35,7 +35,7 @@ export function createActor(identity: Identity) {
   // Fetch root key for certificate validation during development
   if (import.meta.env.VITE_DFX_NETWORK === 'local') {
     console.log('fetchRootKey')
-    agent.fetchRootKey().catch((err) => {
+    agent.fetchRootKey().catch(err => {
       console.warn('Unable to fetch root key. Check to ensure that your local replica is running')
       console.error(err)
     })

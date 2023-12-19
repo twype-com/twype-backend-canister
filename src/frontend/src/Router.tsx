@@ -2,7 +2,9 @@ import { Fragment } from 'react'
 import { RouteObject, useRoutes } from 'react-router-dom'
 import { HomePage } from '@/pages/HomePage'
 import { RoomDevPage } from '@/pages/rooms/RoomDevPage'
+import { NotFoundPage } from './pages/NotFound'
 import { MePage } from './pages/users/MePage'
+
 // import { RoomsListPage } from "@/pages/rooms/RoomsListPage";
 // import { RoomCreatePage } from "@/pages/rooms/RoomCreatePage";
 
@@ -12,8 +14,15 @@ const routes: RouteObject[] = [
     element: <HomePage />,
     index: true,
   },
-  { path: '/rooms', children: [{ path: 'dev', element: <RoomDevPage /> }] },
-  { path: '/users', children: [{ path: ':address', element: <MePage /> }] },
+  {
+    path: '/rooms',
+    children: [{ path: 'dev', element: <RoomDevPage /> }],
+  },
+  {
+    path: '/users',
+    children: [{ path: ':address', element: <MePage /> }],
+  },
+  { path: '*', errorElement: <NotFoundPage />, element: <NotFoundPage /> },
 ]
 
 export default function AppRouter() {
