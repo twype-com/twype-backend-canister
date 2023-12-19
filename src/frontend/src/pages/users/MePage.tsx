@@ -3,7 +3,6 @@ import { Article } from '@/components/Article/Article'
 import { ProfileUser } from '@/features/account/ProfileUser/ProfileUser'
 // import useUserStore from '@/features/user/store'
 import { UserProfile } from '@/features/account/types'
-import { MainLayout } from '@/features/layout/MainLayout/MainLayout'
 import { useInternetIdentity } from '@/hooks/useInternetIdentity'
 
 // import { ProfileDetails } from '@/features/account/ProfileDetails/ProfileDetails'
@@ -29,12 +28,10 @@ export const MePage: FC = () => {
   }
 
   return (
-    <MainLayout>
-      <Article title="Profile" backUrl="/">
-        <ProfileUser profile={fakeUser} />
-        {/* <ProfileDetails profile={fakeUser} /> */}
-        {/* {isOwner && <UserRooms />} */}
-      </Article>
-    </MainLayout>
+    <Article title="Profile" backUrl="/">
+      <ProfileUser profile={fakeUser} />
+      {/* <ProfileDetails profile={fakeUser} /> */}
+      {/* {isOwner && <UserRooms />} */}
+    </Article>
   )
 }
