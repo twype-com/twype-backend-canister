@@ -1,10 +1,8 @@
 import { FC } from 'react'
-import cn from 'classnames'
-
 import { GridLayout, ParticipantTile, useTracks } from '@livekit/components-react'
-
-import styles from './MeetingCompanion.module.scss'
+import cn from 'classnames'
 import { Track } from 'livekit-client'
+import styles from './MeetingCompanion.module.scss'
 
 export const MeetingCompanion: FC = () => {
   const CompanionVideoConference = () => {

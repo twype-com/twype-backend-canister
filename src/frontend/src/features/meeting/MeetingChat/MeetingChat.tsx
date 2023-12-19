@@ -1,7 +1,7 @@
 import { FC, useCallback, useEffect, useState } from 'react'
-import cn from 'classnames'
 import { X } from '@phosphor-icons/react'
 import { Avatar, IconButton } from '@radix-ui/themes'
+import cn from 'classnames'
 import { MessageItem } from '@/features/chat/types'
 import styles from './MeetingChat.module.scss'
 
@@ -22,11 +22,11 @@ export const MeetingChat: FC<MeetingChatProps> = ({
   const [newMessagesIds, setNewMessagesIds] = useState<number[]>([])
 
   const updateMessages = useCallback(() => {
-    const oldIds = chatMessages.map((message) => message.id)
-    messages.forEach((message) => {
+    const oldIds = chatMessages.map(message => message.id)
+    messages.forEach(message => {
       if (!oldIds.includes(message.id)) {
-        setChatMessages((prev) => [...prev, message])
-        setNewMessagesIds((prev) => [...prev, message.id])
+        setChatMessages(prev => [...prev, message])
+        setNewMessagesIds(prev => [...prev, message.id])
       }
     })
     setTimeout(() => {

@@ -1,13 +1,12 @@
 import { FC, useCallback, useState } from 'react'
-import useUserStore from '@/features/user/store'
+import { MeetingActions } from '@/features/meeting/MeetingActions/MeetingActions'
 import { MeetingBar } from '@/features/meeting/MeetingBar/MeetingBar'
 import { MeetingChat } from '@/features/meeting/MeetingChat/MeetingChat'
-import { MeetingParticipants } from '@/features/meeting/MeetingParticipants/MeetingParticipants'
-import { MeetingActions } from '@/features/meeting/MeetingActions/MeetingActions'
 import { MeetingLiveKit } from '@/features/meeting/MeetingLiveKit/MeetingLiveKit'
-import styles from './MeetingLayout.module.scss'
-
+import { MeetingParticipants } from '@/features/meeting/MeetingParticipants/MeetingParticipants'
+import useUserStore from '@/features/user/store'
 import participants from '@/mocks/participants.json'
+import styles from './MeetingLayout.module.scss'
 
 export const MeetingLayout: FC = () => {
   // const router = useRouter()
@@ -32,7 +31,7 @@ export const MeetingLayout: FC = () => {
     setIsSubscribed(!isSubscribed)
   }, [isSubscribed])
 
-  const token = useUserStore((state) => state.livekitToken)
+  const token = useUserStore(state => state.livekitToken)
 
   if (!token) return null
 

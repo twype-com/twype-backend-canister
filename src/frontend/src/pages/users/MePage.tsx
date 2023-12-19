@@ -1,10 +1,11 @@
 import { FC } from 'react'
-import { MainLayout } from '@/features/layout/MainLayout/MainLayout'
 import { Article } from '@/components/Article/Article'
+import { ProfileUser } from '@/features/account/ProfileUser/ProfileUser'
 // import useUserStore from '@/features/user/store'
 import { UserProfile } from '@/features/account/types'
-import { ProfileUser } from '@/features/account/ProfileUser/ProfileUser'
+import { MainLayout } from '@/features/layout/MainLayout/MainLayout'
 import { useInternetIdentity } from '@/hooks/useInternetIdentity'
+
 // import { ProfileDetails } from '@/features/account/ProfileDetails/ProfileDetails'
 // import { UserRooms } from '@/features/account/UserRooms/UserRooms'
 
@@ -24,7 +25,7 @@ export const MePage: FC = () => {
     subscribers: 5409,
     subscriptions: 23,
     isOnline: true,
-    address
+    address,
   }
 
   return (

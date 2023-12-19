@@ -1,10 +1,10 @@
 import { FC, PropsWithChildren, ReactNode } from 'react'
+import { ArrowCircleLeft } from '@phosphor-icons/react'
+import { Button } from '@radix-ui/themes'
 import cn from 'classnames'
 import { Link } from 'react-router-dom'
-import { Button } from '@radix-ui/themes'
-import { ArrowCircleLeft } from '@phosphor-icons/react'
-import { ProtectContent } from '../ProtectContent/ProtectContent'
 import { canLink } from '@/utils/canLink'
+import { ProtectContent } from '../ProtectContent/ProtectContent'
 import styles from './Article.module.scss'
 
 type ArticleProps = {

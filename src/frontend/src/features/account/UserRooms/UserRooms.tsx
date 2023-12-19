@@ -1,9 +1,9 @@
 import { FC, useCallback, useEffect, useState } from 'react'
-import cn from 'classnames'
 import { Button } from '@radix-ui/themes'
+import cn from 'classnames'
 import { TradeRoom } from '@/features/account/types'
-import rooms from '@/mocks/user-rooms.json'
 import { TradingModal } from '@/features/trading/TradingModal/TradingModal'
+import rooms from '@/mocks/user-rooms.json'
 import styles from './UserRooms.module.scss'
 
 type UserRoomsProps = {
@@ -58,7 +58,7 @@ export const UserRooms: FC<UserRoomsProps> = ({ className }) => {
           <span className={styles.sell} />
           <span className={styles.buy} />
         </li>
-        {tradeRooms.map((room) => (
+        {tradeRooms.map(room => (
           <li className={styles.item} key={room.id}>
             <span className={styles.name}>{room.name}</span>
             <span className={styles.participants}>{room.participants}</span>

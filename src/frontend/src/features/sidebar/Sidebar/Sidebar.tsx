@@ -1,8 +1,8 @@
 import { FC } from 'react'
 import cn from 'classnames'
-import { MenuItemName } from '@/features/navigation/types'
 import { useLayout } from '@/features/layout/useLayout'
 import { MainMenu } from '@/features/navigation/MainMenu/MainMenu'
+import { MenuItemName } from '@/features/navigation/types'
 // import { FollowingAccounts } from '../FollowingAccounts/FollowingAccounts'
 import styles from './Sidebar.module.scss'
 

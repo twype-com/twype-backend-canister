@@ -2,6 +2,7 @@
 import { FC, useReducer } from 'react'
 import { useEffectOnce, useKeyPress } from 'react-use'
 import { MeetingLayout } from '@/features/meeting/MeetingLayout/MeetingLayout'
+
 // import { MessageItem } from '@/features/chat/types'
 // import { Person } from '@/components/User/User'
 // import chat from '@/mocks/chat.json'
@@ -36,9 +37,12 @@ export const MeetingGenerator: FC = () => {
   const timer = () => {
     if (increment > 120) return
     dispatch()
-    setTimeout(() => {
-      timer()
-    }, Math.floor(Math.random() * 10) * 1000)
+    setTimeout(
+      () => {
+        timer()
+      },
+      Math.floor(Math.random() * 10) * 1000,
+    )
   }
 
   useEffectOnce(() => {

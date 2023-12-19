@@ -1,6 +1,6 @@
 import { FC } from 'react'
-import cn from 'classnames'
 import { Avatar, Button } from '@radix-ui/themes'
+import cn from 'classnames'
 import styles from './MeetingAuthor.module.scss'
 
 type MeetingAuthorProps = {

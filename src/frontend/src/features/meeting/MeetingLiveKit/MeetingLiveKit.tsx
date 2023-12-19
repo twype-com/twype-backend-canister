@@ -1,8 +1,7 @@
 import { FC, PropsWithChildren } from 'react'
-import styles from './MeetingLiveKit.module.scss'
-
 import { LiveKitRoom, RoomAudioRenderer } from '@livekit/components-react'
 import { MeetingCompanion } from '../MeetingCompanion/MeetingCompanion'
+import styles from './MeetingLiveKit.module.scss'
 
 type MeetingLiveKitProps = {
   token: string

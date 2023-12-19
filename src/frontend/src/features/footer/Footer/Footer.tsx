@@ -1,7 +1,7 @@
 import { FC } from 'react'
 import cn from 'classnames'
-import { MenuItemName } from '@/features/navigation/types'
 import { MainMenu } from '@/features/navigation/MainMenu/MainMenu'
+import { MenuItemName } from '@/features/navigation/types'
 import styles from './Footer.module.scss'
 
 type FooterProps = {

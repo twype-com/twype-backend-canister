@@ -1,10 +1,10 @@
+import { FC, useCallback, useEffect, useMemo, useState } from 'react'
+import { Button } from '@radix-ui/themes'
 import { TradeRoom } from '@/features/account/types'
 import { PostMedia } from '@/features/explore/PostMedia/PostMedia'
 import { TradingModal } from '@/features/trading/TradingModal/TradingModal'
 import { useInternetIdentity } from '@/hooks/useInternetIdentity'
 import { fromDecimals } from '@/utils/fromDecimals'
-import { Button } from '@radix-ui/themes'
-import { FC, useCallback, useEffect, useMemo, useState } from 'react'
 
 export const RoomInfo: FC = () => {
   const { balance, buy, sell } = useInternetIdentity()

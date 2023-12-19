@@ -1,12 +1,12 @@
 import { FC, PropsWithChildren } from 'react'
 import { Button } from '@radix-ui/themes'
-import useUserStore from '@/features/user/store'
 import { TMP_WALLET_ADDRESS } from '@/features/user/constants'
+import useUserStore from '@/features/user/store'
 import styles from './ProtectContent.module.scss'
 
 export const ProtectContent: FC<PropsWithChildren> = ({ children }) => {
-  const address = useUserStore((state) => state.walletAddress)
-  const login = useUserStore((state) => state.updateWalletAddress)
+  const address = useUserStore(state => state.walletAddress)
+  const login = useUserStore(state => state.updateWalletAddress)
 
   return (
     <>

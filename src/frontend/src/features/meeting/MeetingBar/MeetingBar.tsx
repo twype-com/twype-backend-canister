@@ -1,8 +1,7 @@
 import { FC, useEffect } from 'react'
-import cn from 'classnames'
 import { useRoomContext } from '@livekit/components-react'
+import cn from 'classnames'
 // import { useDisconnectButton, useRoomContext } from '@livekit/components-react'
-
 import { MeetingAuthor } from '@/features/meeting/MeetingAuthor/MeetingAuthor'
 import { MeetingControl } from '@/features/meeting/MeetingControl/MeetingControl'
 import styles from './MeetingBar.module.scss'

@@ -1,11 +1,11 @@
 import { FC } from 'react'
-import { Link } from 'react-router-dom'
-import { Button } from '@radix-ui/themes'
 import * as DropdownMenu from '@radix-ui/react-dropdown-menu'
+import { Button } from '@radix-ui/themes'
+import { Link } from 'react-router-dom'
 import { Avatar } from '@/components/Avatar/Avatar'
-import { UserMenuItem } from '../types'
 import { useInternetIdentity } from '@/hooks/useInternetIdentity'
 import { canLink } from '@/utils/canLink'
+import { UserMenuItem } from '../types'
 import styles from './HeaderUser.module.scss'
 
 export const HeaderUser: FC = () => {
@@ -48,7 +48,7 @@ export const HeaderUser: FC = () => {
 
       <DropdownMenu.Portal>
         <DropdownMenu.Content className={styles.DropdownMenuContent} sideOffset={5}>
-          {menu.map((item) => (
+          {menu.map(item => (
             <DropdownMenu.Item className={styles.DropdownMenuItem} key={item.slug}>
               {item.href ? (
                 <Link to={canLink(item.href)} className={styles.link}>

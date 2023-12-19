@@ -1,11 +1,11 @@
 import { FC, useCallback, useRef } from 'react'
 import cn from 'classnames'
 import {
-  RoomEvent,
-  Room,
+  RemoteParticipant,
   RemoteTrack,
   RemoteTrackPublication,
-  RemoteParticipant,
+  Room,
+  RoomEvent,
   Track,
   VideoQuality,
 } from 'livekit-client'
@@ -33,7 +33,6 @@ export const RoomConnector: FC<RoomConnectorProps> = ({ className, room }) => {
   )
 
   const cnt = useCallback(() => {
-    console.log('!!!!!!!')
     room.on(RoomEvent.TrackSubscribed, handleTrackSubscribed)
     const dev = room.getActiveDevice('videoinput')
     console.log('🚀 ~ cnt ~ dev:', dev)

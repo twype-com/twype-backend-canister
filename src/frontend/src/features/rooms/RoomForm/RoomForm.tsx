@@ -1,12 +1,12 @@
 import { FC, useCallback, useState } from 'react'
+import * as Form from '@radix-ui/react-form'
 import cn from 'classnames'
 import { customAlphabet } from 'nanoid'
 import { nolookalikes } from 'nanoid-dictionary'
 import { useEffectOnce } from 'react-use'
-import * as Form from '@radix-ui/react-form'
+import Input from '@/components/Input/Input'
 // import { Button } from '@radix-ui/themes'
 import { Spinner } from '@/components/Spinner/Spinner'
-import Input from '@/components/Input/Input'
 import { NewRoom } from '@/features/rooms/types'
 import formStyles from '@/styles/form.module.scss'
 
@@ -64,7 +64,7 @@ export const RoomForm: FC<RoomFormProps> = ({ className }) => {
                   value={roomName}
                   required
                   className={formStyles.input}
-                  onChange={(event) => setRoomName(event.target.value)}
+                  onChange={event => setRoomName(event.target.value)}
                 />
               </Form.Control>
               <Form.Message
@@ -95,7 +95,7 @@ export const RoomForm: FC<RoomFormProps> = ({ className }) => {
                   readOnly
                   width={180}
                   className={formStyles.input}
-                  onChange={(event) => setRoomCode(event.target.value)}
+                  onChange={event => setRoomCode(event.target.value)}
                 />
               </Form.Control>
               <Form.Message match="valueMissing">Please enter Room code</Form.Message>
@@ -115,7 +115,7 @@ export const RoomForm: FC<RoomFormProps> = ({ className }) => {
                   value={roomTimeout}
                   width={100}
                   className={formStyles.input}
-                  onChange={(event) => setRoomTimeout(event.target.value)}
+                  onChange={event => setRoomTimeout(event.target.value)}
                 />
               </Form.Control>
               <div className={formStyles.info}>Please, the the timeout in seconds</div>
@@ -135,7 +135,7 @@ export const RoomForm: FC<RoomFormProps> = ({ className }) => {
                   value={maxParticipants}
                   width={100}
                   className={formStyles.input}
-                  onChange={(event) => setMaxParticipants(event.target.value)}
+                  onChange={event => setMaxParticipants(event.target.value)}
                 />
               </Form.Control>
             </div>

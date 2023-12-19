@@ -1,7 +1,7 @@
 import { FC, useCallback, useEffect, useState } from 'react'
 import { Button, Dialog } from '@radix-ui/themes'
-import { TradeRoom } from '@/features/account/types'
 import Input from '@/components/Input/Input'
+import { TradeRoom } from '@/features/account/types'
 import styles from './BalanceModal.module.scss'
 
 type BalanceModalProps = {
@@ -45,7 +45,7 @@ export const BalanceModal: FC<BalanceModalProps> = ({
             value={String(ticketsValue)}
             type="number"
             className={styles.input}
-            onChange={(e) => setTicketsValue(Number(e.target.value))}
+            onChange={e => setTicketsValue(Number(e.target.value))}
           />{' '}
           ICP
         </Dialog.Description>

@@ -1,8 +1,8 @@
 import { FC } from 'react'
-import cn from 'classnames'
+import { CaretDown } from '@phosphor-icons/react/dist/ssr/CaretDown'
 import * as Form from '@radix-ui/react-form'
 import { Button, IconButton, Switch } from '@radix-ui/themes'
-import { CaretDown } from '@phosphor-icons/react/dist/ssr/CaretDown'
+import cn from 'classnames'
 import styles from './SettingsForm.module.scss'
 
 type SettingsFormProps = {

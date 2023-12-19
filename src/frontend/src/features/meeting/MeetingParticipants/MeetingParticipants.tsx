@@ -1,7 +1,7 @@
 import { FC } from 'react'
+import { GridLayout, ParticipantTile, useTracks } from '@livekit/components-react'
 import cn from 'classnames'
 import { Track } from 'livekit-client'
-import { GridLayout, ParticipantTile, useTracks } from '@livekit/components-react'
 import { Person } from '@/components/User/User'
 import styles from './MeetingParticipants.module.scss'
 

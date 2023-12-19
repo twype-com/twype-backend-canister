@@ -1,7 +1,7 @@
 import { FC } from 'react'
-import cn from 'classnames'
+import { DotsThreeOutlineVertical, ShareFat } from '@phosphor-icons/react'
 import { Button, DropdownMenu } from '@radix-ui/themes'
-import { ShareFat, DotsThreeOutlineVertical } from '@phosphor-icons/react'
+import cn from 'classnames'
 import styles from './ProfileUserActions.module.scss'
 
 type ProfileUserActionsProps = {

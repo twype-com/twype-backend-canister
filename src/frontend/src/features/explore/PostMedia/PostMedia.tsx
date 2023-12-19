@@ -1,7 +1,7 @@
 import { FC } from 'react'
 import { AspectRatio } from '@radix-ui/themes'
-import styles from './PostMedia.module.scss'
 import image from '../../../assets/room.jpg'
+import styles from './PostMedia.module.scss'
 
 type PostMediaProps = {
   cover?: string

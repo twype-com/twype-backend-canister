@@ -1,5 +1,4 @@
 import { FC } from 'react'
-import cn from 'classnames'
 import {
   CameraRotate,
   ChartBar,
@@ -13,6 +12,7 @@ import {
   VideoCamera,
   VideoCameraSlash,
 } from '@phosphor-icons/react'
+import cn from 'classnames'
 import styles from './MeetingControl.module.scss'
 
 type MeetingIcon =

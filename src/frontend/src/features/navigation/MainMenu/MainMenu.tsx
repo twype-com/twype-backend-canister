@@ -1,14 +1,14 @@
 import { FC } from 'react'
-import cn from 'classnames'
 import {
   Envelope,
   House,
   MagnifyingGlass,
   Plus,
-  VideoCamera,
-  Users,
   User,
+  Users,
+  VideoCamera,
 } from '@phosphor-icons/react'
+import cn from 'classnames'
 import { MenuItem, MenuItemName } from '../types'
 import styles from './MainMenu.module.scss'
 
@@ -67,15 +67,15 @@ export const MainMenu: FC<MainMenuProps> = ({ className, isHorizontal, items }) 
   ]
 
   const menu = items
-    .map((menuItem) => {
-      return list.find((item) => item.name === menuItem)
+    .map(menuItem => {
+      return list.find(item => item.name === menuItem)
     })
     .filter(Boolean)
 
   return (
     <nav className={cn(styles.menu, className)}>
       <ul className={cn(styles.list, { [styles.horizontal]: isHorizontal })}>
-        {menu.map((item) => (
+        {menu.map(item => (
           <li className={styles.item} key={item?.slug}>
             <a
               className={cn(

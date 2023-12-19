@@ -1,10 +1,10 @@
 /* eslint-disable @typescript-eslint/ban-types */
 import { FC } from 'react'
 import { Article } from '@/components/Article/Article'
-import { ProfileUser } from '../ProfileUser/ProfileUser'
-import { ProfileDetails } from '../ProfileDetails/ProfileDetails'
-import { UserProfile } from '../types'
 import { useInternetIdentity } from '@/hooks/useInternetIdentity'
+import { ProfileDetails } from '../ProfileDetails/ProfileDetails'
+import { ProfileUser } from '../ProfileUser/ProfileUser'
+import { UserProfile } from '../types'
 
 type ProfileLoaderProps = {}
 
@@ -20,7 +20,7 @@ export const ProfileLoader: FC<ProfileLoaderProps> = () => {
     subscribers: 5409,
     subscriptions: 23,
     isOnline: true,
-    address
+    address,
   }
 
   return (

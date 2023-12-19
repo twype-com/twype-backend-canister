@@ -1,12 +1,12 @@
-import { FC } from "react";
-import cn from "classnames";
-import { Spinner } from "@/components/Spinner/Spinner";
-import styles from "./Loader.module.scss";
+import { FC } from 'react'
+import cn from 'classnames'
+import { Spinner } from '@/components/Spinner/Spinner'
+import styles from './Loader.module.scss'
 
 type SpinnerProps = {
-  title?: string;
-  className?: string;
-};
+  title?: string
+  className?: string
+}
 
 export const Loader: FC<SpinnerProps> = ({ title, className }) => {
   return (
@@ -16,5 +16,5 @@ export const Loader: FC<SpinnerProps> = ({ title, className }) => {
         <Spinner />
       </div>
     </div>
-  );
-};
+  )
+}

@@ -1,7 +1,7 @@
 import { FC, useCallback, useEffect, useState } from 'react'
 import { Button, Dialog } from '@radix-ui/themes'
-import { TradeRoom } from '@/features/account/types'
 import Input from '@/components/Input/Input'
+import { TradeRoom } from '@/features/account/types'
 import styles from './TradingModal.module.scss'
 
 type TradingModalProps = {
@@ -47,7 +47,7 @@ export const TradingModal: FC<TradingModalProps> = ({
             type="number"
             className={styles.input}
             min={0}
-            onChange={(e) => setTicketsValue(Number(e.target.value))}
+            onChange={e => setTicketsValue(Number(e.target.value))}
           />{' '}
           tickets for {(price * ticketsValue).toFixed(5)} ICP
         </Dialog.Description>

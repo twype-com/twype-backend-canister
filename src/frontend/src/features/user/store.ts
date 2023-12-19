@@ -14,11 +14,11 @@ type Action = {
 
 const useUserStore = create<State & Action>()(
   persist(
-    (set) => ({
+    set => ({
       walletAddress: null,
       livekitToken: null,
-      updateWalletAddress: (walletAddress) => set(() => ({ walletAddress: walletAddress })),
-      updateLivekitToken: (livekitToken) => set(() => ({ livekitToken: livekitToken })),
+      updateWalletAddress: walletAddress => set(() => ({ walletAddress: walletAddress })),
+      updateLivekitToken: livekitToken => set(() => ({ livekitToken: livekitToken })),
       logout: () => set(() => ({ walletAddress: null, livekitToken: null })),
     }),
     {

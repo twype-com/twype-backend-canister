@@ -8,7 +8,7 @@ type FollowingAccountsProps = {
 }
 
 export const FollowingAccounts: FC<FollowingAccountsProps> = ({ className }) => {
-  const list = Array.from({ length: 5 }, (_, i) => i + 1).map((item) => ({
+  const list = Array.from({ length: 5 }, (_, i) => i + 1).map(item => ({
     nickName: `nickName${item}`,
     fullName: `fullName${item}`,
   }))
@@ -17,7 +17,7 @@ export const FollowingAccounts: FC<FollowingAccountsProps> = ({ className }) => 
     <div className={cn(styles.following, className)}>
       <h3 className={styles.title}>Following accounts</h3>
       <ul className={styles.list}>
-        {list.map((account) => (
+        {list.map(account => (
           <li className={styles.item} key={account.nickName}>
             <User
               nickName={account.nickName}

@@ -1,10 +1,10 @@
 import { FC } from 'react'
-import cn from 'classnames'
-import axios, { AxiosResponse } from 'axios'
-import { Link } from 'react-router-dom'
 import { useQuery } from '@tanstack/react-query'
-import useUserStore from '@/features/user/store'
+import axios, { AxiosResponse } from 'axios'
+import cn from 'classnames'
+import { Link } from 'react-router-dom'
 import { NewRoom } from '@/features/rooms/types'
+import useUserStore from '@/features/user/store'
 
 type CreateRoomFormProps = {
   className?: string
@@ -12,7 +12,7 @@ type CreateRoomFormProps = {
 }
 
 export const CreateRoomSender: FC<CreateRoomFormProps> = ({ className, newRoom }) => {
-  const token = useUserStore((state) => state.livekitToken)
+  const token = useUserStore(state => state.livekitToken)
 
   const { isLoading, error, data } = useQuery({
     queryKey: ['createRoomQuery'],
@@ -45,7 +45,7 @@ export const CreateRoomSender: FC<CreateRoomFormProps> = ({ className, newRoom }
             },
           },
         )
-        .then((response) => response.data)
+        .then(response => response.data)
     },
   })
 

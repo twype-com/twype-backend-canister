@@ -1,11 +1,11 @@
 import { FC, useCallback, useEffect, useState } from 'react'
-import cn from 'classnames'
 import { Button } from '@radix-ui/themes'
+import cn from 'classnames'
 import { BalanceModal } from '@/features/trading/BalanceModal/BalanceModal'
-import styles from './ProfileBalance.module.scss'
 import { useInternetIdentity } from '@/hooks/useInternetIdentity'
 import { fromDecimals } from '@/utils/fromDecimals'
 import { toDecimals } from '@/utils/toDecimals'
+import styles from './ProfileBalance.module.scss'
 
 type ProfileBalanceProps = {
   className?: string
@@ -32,28 +32,40 @@ export const ProfileBalance: FC<ProfileBalanceProps> = ({ className }) => {
     setTradingType('buy')
   }, [])
 
-  const handleSell = useCallback((num: number) => {
-    console.log('🚀 ~ handleSell ~ num:', num)
-    setIsDialogOpen(false)
+  const handleSell = useCallback(
+    (num: number) => {
+      console.log('🚀 ~ handleSell ~ num:', num)
+      setIsDialogOpen(false)
 
-    if (withdraw) {
-      withdraw(toDecimals(num))
-    }
-  }, [withdraw])
+      if (withdraw) {
+        withdraw(toDecimals(num))
+      }
+    },
+    [withdraw],
+  )
 
-  const handleBuy = useCallback((num: number) => {
-    console.log('🚀 ~ handleBuy ~ num:', num)
-    setIsDialogOpen(false)
+  const handleBuy = useCallback(
+    (num: number) => {
+      console.log('🚀 ~ handleBuy ~ num:', num)
+      setIsDialogOpen(false)
 
-    if (deposit) {
-      deposit(toDecimals(num))
-    }
-  }, [deposit])
+      if (deposit) {
+        deposit(toDecimals(num))
+      }
+    },
+    [deposit],
+  )
 
   return (
     <div className={cn(styles.balance, className)}>
       <div className={styles.current}>
-        Twype balance: <b>{balance?.dexBalance ? fromDecimals(Number(balance?.dexBalance)).toLocaleString() : "0.00"} ICP</b>
+        Twype balance:{' '}
+        <b>
+          {balance?.dexBalance
+            ? fromDecimals(Number(balance?.dexBalance)).toLocaleString()
+            : '0.00'}{' '}
+          ICP
+        </b>
       </div>
       <div className={styles.actions}>
         <div className={styles.buy}>

@@ -1,7 +1,7 @@
 import { FC } from 'react'
+import { Avatar as RadixAvatar } from '@radix-ui/themes'
 import cn from 'classnames'
 import NiceAvatar, { genConfig } from 'react-nice-avatar'
-import { Avatar as RadixAvatar } from '@radix-ui/themes'
 import styles from './Avatar.module.scss'
 
 type AvatarProps = {
