@@ -9,7 +9,9 @@ type InputProps = InputHTMLAttributes<HTMLInputElement> & {
   type?: string
 }
 
-const Input: FC<InputProps> = forwardRef(({ className, width, type = 'text', ...rest }) => {
+const Input: FC<InputProps> = forwardRef(({ className, width, type = 'text', ...rest }, ref) => {
+  // @TODO: Fix refs
+  console.log('🚀 ~ InputRef:', ref)
   const input = useRef<HTMLInputElement>(null)
 
   useEffect(() => {
